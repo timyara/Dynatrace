@@ -1,0 +1,4742 @@
+ {
+  "metadata": {
+    "configurationVersions": [
+      7
+    ],
+    "clusterVersion": "1.297.43.20240806-153042"
+  },
+  "id": "b77e712c-3237-4d63-9565-7cfd312728d9",
+  "dashboardMetadata": {
+    "name": "Business Insights - Home Page Overview (Real Users)",
+    "shared": true,
+    "owner": "nathon.burwick@dynatrace.com",
+    "dashboardFilter": {
+      "timeframe": "previous month"
+    },
+    "preset": true,
+    "popularity": 10,
+    "hasConsistentColors": false
+  },
+  "tiles": [
+    {
+      "name": "Errors by Origin and Type Per Min",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 874,
+        "left": 3572,
+        "width": 1140,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.action.countOfErrors",
+          "spaceAggregation": "VALUE",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "Error origin",
+            "Error type"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              },
+              {
+                "filter": "User type",
+                "filterType": "DIMENSION",
+                "filterOperator": "OR",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "Real users",
+                    "evaluator": "EQ"
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "MINUTE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TOP_LIST",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "STACKED_COLUMN"
+            },
+            "seriesOverrides": [
+              {
+                "name": "First party | Request",
+                "color": "#74cff7"
+              },
+              {
+                "name": "First party | JavaScript",
+                "color": "#008cdb"
+              },
+              {
+                "name": "Third party | Request",
+                "color": "#7F7F7F"
+              },
+              {
+                "name": "Third party | JavaScript",
+                "color": "#4D4D4D"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:apps.web.action.countOfErrors:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(eq(\"User type\",\"Real users\")))):splitBy(\"Error origin\",\"Error type\"):value:rate(1m):setUnit(PerMinute):sort(value(sum,descending)):limit(20)):limit(100):names:fold(auto)"
+      ]
+    },
+    {
+      "name": "Median Visually Complete by Browser",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 456,
+        "left": 1216,
+        "width": 380,
+        "height": 418
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "B",
+          "metric": "builtin:apps.web.action.visuallyComplete.load.browser",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              },
+              {
+                "filter": "dt.entity.browser",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "Mobile Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  },
+                  {
+                    "value": "Tablet Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  },
+                  {
+                    "value": "Desktop Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TOP_LIST",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "B:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Desktop Browser",
+                "color": "#9355b7"
+              },
+              {
+                "name": "Tablet Browser",
+                "color": "#14a8f5"
+              },
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.visuallyComplete.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.browser\"):median:sort(value(median,descending)):limit(20)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Top Tablet Browser Families (%)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1292,
+        "left": 798,
+        "width": 380,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Pie",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "metricSelector": "builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"Tablet~\"))\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.browser\"):sort(value(auto,descending)) / builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"Tablet~\"))\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy() * 100",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "PIE_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Chrome Mobile",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Safari mobile",
+                "color": "#14a8f5"
+              },
+              {
+                "name": "Select series",
+                "color": "#006bba"
+              },
+              {
+                "name": "Select series",
+                "color": "#ef651f"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"Tablet~\"))\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.browser\"):sort(value(auto,descending))/builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"Tablet~\"))\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy()*100):limit(100):names"
+      ]
+    },
+    {
+      "name": "Top Mobile Browser Families (%)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1292,
+        "left": 38,
+        "width": 380,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Pie",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "metricSelector": "builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"Mobile~\"))\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.browser\"):sort(value(auto,descending)) / builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"Mobile~\"))\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy() * 100",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "PIE_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Safari mobile",
+                "color": "#14a8f5"
+              },
+              {
+                "name": "Chrome Mobile",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Google App",
+                "color": "#006613"
+              },
+              {
+                "name": "Instagram App",
+                "color": "#9355b7"
+              },
+              {
+                "name": "Facebook App",
+                "color": "#004999"
+              },
+              {
+                "name": "Snapchat App",
+                "color": "#ffe11c"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"Mobile~\"))\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.browser\"):sort(value(auto,descending))/builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"Mobile~\"))\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy()*100):limit(100):names"
+      ]
+    },
+    {
+      "name": "Top Tablet Browser Families (VC)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 874,
+        "left": 1976,
+        "width": 380,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Pie",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "metricSelector": "builtin:apps.web.action.visuallyComplete.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"Tablet~\"))\"))))):splitBy(\"dt.entity.browser\"):median:sort(value(median,descending))",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TOP_LIST",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Chrome Mobile",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Safari mobile",
+                "color": "#14a8f5"
+              },
+              {
+                "name": "Select series",
+                "color": "#006bba"
+              },
+              {
+                "name": "Select series",
+                "color": "#ef651f"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.visuallyComplete.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"Tablet~\"))\"))))):splitBy(\"dt.entity.browser\"):median:sort(value(median,descending))):limit(100):names"
+      ]
+    },
+    {
+      "name": "Home Page Apdex Score",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 3572,
+        "width": 342,
+        "height": 190
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.action.apdex",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              },
+              {
+                "filter": "User type",
+                "filterType": "DIMENSION",
+                "filterOperator": "OR",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "Real users",
+                    "evaluator": "EQ"
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0.9,
+                "color": "#7dc540"
+              },
+              {
+                "value": 0.5,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.apdex:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(eq(\"User type\",\"Real users\")))):splitBy():sort(value(auto,descending)):limit(20)):limit(100):names",
+        "resolution=null&(builtin:apps.web.action.apdex:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(eq(\"User type\",\"Real users\")))):splitBy():sort(value(auto,descending)):limit(20))"
+      ]
+    },
+    {
+      "name": "Median (Combined)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 456,
+        "left": 1862,
+        "width": 228,
+        "height": 190
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.action.visuallyComplete.load.browser",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.browser",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "Desktop Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  },
+                  {
+                    "value": "Mobile Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  },
+                  {
+                    "value": "Tablet Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              },
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Select series",
+                "color": "#9355b7"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 3000,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 12000,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.visuallyComplete.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy():median:sort(value(median,descending)):limit(20)):limit(100):names",
+        "resolution=null&(builtin:apps.web.action.visuallyComplete.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy():median:sort(value(median,descending)):limit(20))"
+      ]
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 494,
+        "left": 3952,
+        "width": 380,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Apdex Distribution - Desktop",
+      "query": "SELECT COUNT(*), useraction.apdexCategory as \"Apdex\"\nFROM usersession \n WHERE useraction.application = \"www.ulta.com\" AND useraction.type = \"Load\" AND userType=\"REAL_USER\" AND useraction.name = \"loading of home page\" AND browserType=\"Desktop Browser\"\nGROUP BY Apdex",
+      "type": "PIE_CHART",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 494,
+        "left": 3572,
+        "width": 380,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Apdex Distribution - Mobile",
+      "query": "SELECT COUNT(*), useraction.apdexCategory as \"Apdex\"\nFROM usersession \n WHERE useraction.application = \"www.ulta.com\" AND useraction.type = \"Load\" AND userType=\"REAL_USER\" AND useraction.name = \"loading of home page\" AND browserType=\"Mobile Browser\"\nGROUP BY Apdex",
+      "type": "PIE_CHART",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 494,
+        "left": 4332,
+        "width": 380,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Apdex Distribution - Tablet",
+      "query": "SELECT COUNT(*), useraction.apdexCategory as \"Apdex\"\nFROM usersession \n WHERE useraction.application = \"www.ulta.com\" AND useraction.type = \"Load\" AND userType=\"REAL_USER\" AND useraction.name = \"loading of home page\" AND browserType=\"Tablet Browser\"\nGROUP BY Apdex",
+      "type": "PIE_CHART",
+      "limit": 50
+    },
+    {
+      "name": "Top Desktop Browser Families (%)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1292,
+        "left": 418,
+        "width": 380,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Pie",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "metricSelector": "builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"Desktop~\"))\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.browser\"):sort(value(auto,descending)) / builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"Desktop~\"))\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy() * 100",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "PIE_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Chrome",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Safari",
+                "color": "#14a8f5"
+              },
+              {
+                "name": "Microsoft Edge",
+                "color": "#006bba"
+              },
+              {
+                "name": "Firefox",
+                "color": "#ef651f"
+              },
+              {
+                "name": "IE",
+                "color": "#e0f4fc"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"Desktop~\"))\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.browser\"):sort(value(auto,descending))/builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"Desktop~\"))\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy()*100):limit(100):names"
+      ]
+    },
+    {
+      "name": "Top Desktop Browser Families (VC)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 874,
+        "left": 1596,
+        "width": 380,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Pie",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "metricSelector": "builtin:apps.web.action.visuallyComplete.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"Desktop~\"))\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.browser\"):median:sort(value(median,descending))",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TOP_LIST",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Chrome",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Safari",
+                "color": "#14a8f5"
+              },
+              {
+                "name": "Microsoft Edge",
+                "color": "#006bba"
+              },
+              {
+                "name": "Firefox",
+                "color": "#ef651f"
+              },
+              {
+                "name": "IE",
+                "color": "#e0f4fc"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.visuallyComplete.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"Desktop~\"))\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.browser\"):median:sort(value(median,descending))):limit(100):names"
+      ]
+    },
+    {
+      "name": "Error Rates (%) by Origin and Type",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1178,
+        "left": 3572,
+        "width": 380,
+        "height": 380
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "Error origin",
+            "Error type"
+          ],
+          "metricSelector": "builtin:apps.web.action.countOfErrors:filter(and(or(eq(\"User type\",\"Real users\")),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"Error origin\",\"Error type\"):value:sort(value(value,descending)) / builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy() * 100",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "PIE_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "STACKED_COLUMN"
+            },
+            "seriesOverrides": [
+              {
+                "name": "First party | Request",
+                "color": "#74cff7"
+              },
+              {
+                "name": "First party | JavaScript",
+                "color": "#008cdb"
+              },
+              {
+                "name": "Third party | Request",
+                "color": "#7F7F7F"
+              },
+              {
+                "name": "Third party | JavaScript",
+                "color": "#4D4D4D"
+              },
+              {
+                "name": "CDN | Request",
+                "color": "#ef651f"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": true
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.countOfErrors:filter(and(or(eq(\"User type\",\"Real users\")),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"Error origin\",\"Error type\"):value:sort(value(value,descending))/builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy()*100):limit(100):names"
+      ]
+    },
+    {
+      "name": "Core Web Vitals - Over Time",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 2394,
+        "width": 1140,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "75th Percentile (Combined)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 456,
+        "left": 2128,
+        "width": 228,
+        "height": 190
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.action.visuallyComplete.load.browser",
+          "spaceAggregation": "PERCENTILE_75",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              },
+              {
+                "filter": "dt.entity.browser",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "Desktop Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  },
+                  {
+                    "value": "Mobile Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  },
+                  {
+                    "value": "Tablet Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Select series",
+                "color": "#9355b7"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 3000,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 12000,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.visuallyComplete.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy():percentile(75.0):sort(value(percentile(75.0),descending)):limit(20)):limit(100):names",
+        "resolution=null&(builtin:apps.web.action.visuallyComplete.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy():percentile(75.0):sort(value(percentile(75.0),descending)):limit(20))"
+      ]
+    },
+    {
+      "name": "Median Speed Index by Browser",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 1216,
+        "width": 380,
+        "height": 418
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "B",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "metricSelector": "builtin:apps.web.action.speedIndex.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy(\"dt.entity.browser\"):median:sort(value(median,descending)):limit(20)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TOP_LIST",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "B:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Desktop Browser",
+                "color": "#9355b7"
+              },
+              {
+                "name": "Tablet Browser",
+                "color": "#14a8f5"
+              },
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.speedIndex.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy(\"dt.entity.browser\"):median:sort(value(median,descending)):limit(20)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Median (Combined)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 1862,
+        "width": 228,
+        "height": 190
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "metricSelector": "builtin:apps.web.action.speedIndex.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy():median:sort(value(median,descending)):limit(20)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Select series",
+                "color": "#9355b7"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 2000,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 5000,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.speedIndex.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy():median:sort(value(median,descending)):limit(20)):limit(100):names",
+        "resolution=null&(builtin:apps.web.action.speedIndex.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy():median:sort(value(median,descending)):limit(20))"
+      ]
+    },
+    {
+      "name": "75th Percentile (Combined)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 2128,
+        "width": 228,
+        "height": 190
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "metricSelector": "builtin:apps.web.action.speedIndex.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy():percentile(75.0):sort(value(percentile(75.0),descending)):limit(20)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Select series",
+                "color": "#9355b7"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 2000,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 5000,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.speedIndex.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy():percentile(75.0):sort(value(percentile(75.0),descending)):limit(20)):limit(100):names",
+        "resolution=null&(builtin:apps.web.action.speedIndex.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy():percentile(75.0):sort(value(percentile(75.0),descending)):limit(20))"
+      ]
+    },
+    {
+      "name": "Browser Type Distribution (%)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 532,
+        "left": 38,
+        "width": 380,
+        "height": 380
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "metricSelector": "builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy(\"dt.entity.browser\"):sort(value(auto,descending)) / builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy() * 100",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "PIE_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "STACKED_AREA"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Desktop Browser",
+                "color": "#a972cc"
+              },
+              {
+                "name": "Tablet Browser",
+                "color": "#14a8f5"
+              },
+              {
+                "name": "Select series",
+                "color": "#4D4D4D"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": true
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy(\"dt.entity.browser\"):sort(value(auto,descending))/builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy()*100):limit(100):names"
+      ]
+    },
+    {
+      "name": "Visual Render Performance KPIs",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 1216,
+        "width": 1140,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "Real User Distribution by Browser Type",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 494,
+        "left": 38,
+        "width": 1140,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "Error Origins and Types",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 836,
+        "left": 3572,
+        "width": 1140,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "25th Percentile (Combined)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 1596,
+        "width": 228,
+        "height": 190
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "metricSelector": "builtin:apps.web.action.speedIndex.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy():percentile(25.0):sort(value(avg,descending)):limit(20)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Select series",
+                "color": "#9355b7"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 2000,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 5000,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.speedIndex.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy():percentile(25.0):sort(value(avg,descending)):limit(20)):limit(100):names",
+        "resolution=null&(builtin:apps.web.action.speedIndex.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy():percentile(25.0):sort(value(avg,descending)):limit(20))"
+      ]
+    },
+    {
+      "name": "25th Percentile (Combined)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 456,
+        "left": 1596,
+        "width": 228,
+        "height": 190
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "metricSelector": "builtin:apps.web.action.visuallyComplete.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy():percentile(25.0):sort(value(avg,descending)):limit(20)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Select series",
+                "color": "#9355b7"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 3000,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 12000,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.visuallyComplete.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy():percentile(25.0):sort(value(avg,descending)):limit(20)):limit(100):names",
+        "resolution=null&(builtin:apps.web.action.visuallyComplete.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy():percentile(25.0):sort(value(avg,descending)):limit(20))"
+      ]
+    },
+    {
+      "name": "APDEX Analysis",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 3572,
+        "width": 1140,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "Error Distribution by Origin/Type (%)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1558,
+        "left": 3572,
+        "width": 380,
+        "height": 380
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "Error origin",
+            "Error type"
+          ],
+          "metricSelector": "builtin:apps.web.action.countOfErrors:filter(and(or(eq(\"User type\",\"Real users\")),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.contains(~\"loading of home page~\")\"))))):splitBy(\"Error origin\",\"Error type\"):sort(value(auto,descending)):limit(20) / builtin:apps.web.action.countOfErrors:filter(and(or(eq(\"User type\",\"Real users\")),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.contains(~\"loading of home page~\")\"))))):splitBy() * 100",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "PIE_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "STACKED_COLUMN"
+            },
+            "seriesOverrides": [
+              {
+                "name": "First party | Request",
+                "color": "#74cff7"
+              },
+              {
+                "name": "First party | JavaScript",
+                "color": "#008cdb"
+              },
+              {
+                "name": "Third party | JavaScript",
+                "color": "#7F7F7F"
+              },
+              {
+                "name": "Third party | Request",
+                "color": "#4D4D4D"
+              },
+              {
+                "name": "CDN | Request",
+                "color": "#ef651f"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.countOfErrors:filter(and(or(eq(\"User type\",\"Real users\")),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.contains(~\"loading of home page~\")\"))))):splitBy(\"Error origin\",\"Error type\"):sort(value(auto,descending)):limit(20)/builtin:apps.web.action.countOfErrors:filter(and(or(eq(\"User type\",\"Real users\")),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.contains(~\"loading of home page~\")\"))))):splitBy()*100):limit(100):names"
+      ]
+    },
+    {
+      "name": "Page Loads by Browser Type",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 912,
+        "left": 38,
+        "width": 380,
+        "height": 380
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "metricSelector": "builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy(\"dt.entity.browser\"):sort(value(auto,descending))",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "PIE_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "STACKED_AREA"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Desktop Browser",
+                "color": "#a972cc"
+              },
+              {
+                "name": "Tablet Browser",
+                "color": "#14a8f5"
+              },
+              {
+                "name": "Select series",
+                "color": "#4D4D4D"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": true
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy(\"dt.entity.browser\"):sort(value(auto,descending))):limit(100):names"
+      ]
+    },
+    {
+      "name": "Top Mobile Browser Families (VC)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 874,
+        "left": 1216,
+        "width": 380,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Pie",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "metricSelector": "builtin:apps.web.action.visuallyComplete.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"mobile~\"))\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.browser\"):median:sort(value(median,descending)):limit(20)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TOP_LIST",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Safari mobile",
+                "color": "#14a8f5"
+              },
+              {
+                "name": "Chrome Mobile",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Google App",
+                "color": "#006613"
+              },
+              {
+                "name": "Instagram App",
+                "color": "#9355b7"
+              },
+              {
+                "name": "Facebook App",
+                "color": "#004999"
+              },
+              {
+                "name": "Snapchat App",
+                "color": "#ffe11c"
+              },
+              {
+                "name": "TikTok App",
+                "color": "#000000"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.visuallyComplete.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),fromRelationship.isChildOf(type(BROWSER),entityName.contains(~\"mobile~\"))\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.browser\"):median:sort(value(median,descending)):limit(20)):limit(100):names"
+      ]
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 3914,
+        "width": 798,
+        "height": 456
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "APDEX Rating Exit Rate Impact",
+      "query": "SELECT DATETIME(starttime, \"MM/dd\", \"1d\") AS \"Date\", Count(*) as \"Exit Count\"\n FROM useraction WHERE application=\"www.ulta.com\" and apdexCategory in (\"TOLERATING\", \"FRUSTRATED\") and (isExitAction=true or usersession.bounce=true) and name = \"loading of home page\" GROUP BY Date Order By Date",
+      "type": "COLUMN_CHART",
+      "visualizationConfig": {
+        "hasAxisBucketing": false
+      },
+      "limit": 50
+    },
+    {
+      "name": "LCP (75th Percentile)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 2394,
+        "width": 342,
+        "height": 190
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.action.largestContentfulPaint.load.userType.geo",
+          "spaceAggregation": "PERCENTILE_75",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              },
+              {
+                "filter": "User type",
+                "filterType": "DIMENSION",
+                "filterOperator": "OR",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "Real users",
+                    "evaluator": "EQ"
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 2501,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 4000,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.largestContentfulPaint.load.userType.geo:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(eq(\"User type\",\"Real users\")))):splitBy():percentile(75.0):sort(value(percentile(75.0),descending)):limit(20)):limit(100):names",
+        "resolution=null&(builtin:apps.web.action.largestContentfulPaint.load.userType.geo:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(eq(\"User type\",\"Real users\")))):splitBy():percentile(75.0):sort(value(percentile(75.0),descending)):limit(20))"
+      ]
+    },
+    {
+      "name": "CLS (75th Percentile)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 494,
+        "left": 2394,
+        "width": 342,
+        "height": 190
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.action.cumulativeLayoutShift.load.userType",
+          "spaceAggregation": "PERCENTILE_75",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              },
+              {
+                "filter": "User type",
+                "filterType": "DIMENSION",
+                "filterOperator": "OR",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "Real users",
+                    "evaluator": "EQ"
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 0.11,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0.25,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.cumulativeLayoutShift.load.userType:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(eq(\"User type\",\"Real users\")))):splitBy():percentile(75.0):sort(value(percentile(75.0),descending)):limit(20)):limit(100):names",
+        "resolution=null&(builtin:apps.web.action.cumulativeLayoutShift.load.userType:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(eq(\"User type\",\"Real users\")))):splitBy():percentile(75.0):sort(value(percentile(75.0),descending)):limit(20))"
+      ]
+    },
+    {
+      "name": "FID (75th Percentile)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 950,
+        "left": 2394,
+        "width": 342,
+        "height": 190
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.action.firstInputDelay.load.userType",
+          "spaceAggregation": "PERCENTILE_75",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "User type",
+                "filterType": "DIMENSION",
+                "filterOperator": "OR",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "Real users",
+                    "evaluator": "EQ"
+                  }
+                ]
+              },
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 101,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 300,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.firstInputDelay.load.userType:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(eq(\"User type\",\"Real users\")))):splitBy():percentile(75.0):sort(value(percentile(75.0),descending)):limit(20)):limit(100):names",
+        "resolution=null&(builtin:apps.web.action.firstInputDelay.load.userType:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(eq(\"User type\",\"Real users\")))):splitBy():percentile(75.0):sort(value(percentile(75.0),descending)):limit(20))"
+      ]
+    },
+    {
+      "name": "Action Overview",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 38,
+        "width": 1140,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "Page Loads",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 38,
+        "width": 342,
+        "height": 190
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.action.count.load.browser",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.application_method"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy():sort(value(auto,descending)):limit(20)):limit(100):names",
+        "resolution=null&(builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy():sort(value(auto,descending)):limit(20))"
+      ]
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 228,
+        "left": 38,
+        "width": 342,
+        "height": 266
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "User Type Distribution (%)",
+      "query": "SELECT usersession.userType as \"User Type\", Count(*) as Count\n FROM useraction \n WHERE application=\"www.ulta.com\" and name = \"loading of home page\"\nGROUP BY usersession.userType\nORDER BY Count ASC",
+      "type": "PIE_CHART",
+      "limit": 50
+    },
+    {
+      "name": "Page Loads by Browser Type (Per Min)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 912,
+        "left": 418,
+        "width": 760,
+        "height": 380
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "metricSelector": "builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy(\"dt.entity.browser\"):value:rate(1m):setUnit(PerMinute):sort(value(sum,ascending))",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "STACKED_COLUMN",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "STACKED_COLUMN"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Desktop Browser",
+                "color": "#a972cc"
+              },
+              {
+                "name": "Tablet Browser",
+                "color": "#14a8f5"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": true
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "1d"
+      },
+      "metricExpressions": [
+        "resolution=1d&(builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy(\"dt.entity.browser\"):value:rate(1m):setUnit(PerMinute):sort(value(sum,ascending))):limit(100):names"
+      ]
+    },
+    {
+      "name": "FID (75th Percentile)  - By Browser",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 950,
+        "left": 2736,
+        "width": 798,
+        "height": 456
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.action.firstInputDelay.load.browser",
+          "spaceAggregation": "PERCENTILE_75",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              },
+              {
+                "filter": "dt.entity.browser",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "Mobile Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  },
+                  {
+                    "value": "Desktop Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  },
+                  {
+                    "value": "Tablet Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Desktop Browser",
+                "color": "#9355b7"
+              },
+              {
+                "name": "Tablet Browser",
+                "color": "#14a8f5"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 101,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 300,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": true
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "1d"
+      },
+      "metricExpressions": [
+        "resolution=1d&(builtin:apps.web.action.firstInputDelay.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.browser\"):percentile(75.0):sort(value(percentile(75.0),descending)):limit(20)):limit(100):names"
+      ]
+    },
+    {
+      "name": "LCP (75th Percentile) - By Browser",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 2736,
+        "width": 798,
+        "height": 456
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.action.largestContentfulPaint.load.browser",
+          "spaceAggregation": "PERCENTILE_75",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.browser",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "Desktop Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  },
+                  {
+                    "value": "Mobile Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  },
+                  {
+                    "value": "Tablet Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              },
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Desktop Browser",
+                "color": "#9355b7"
+              },
+              {
+                "name": "Tablet Browser",
+                "color": "#14a8f5"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 2501,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 4000,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": true
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "1d"
+      },
+      "metricExpressions": [
+        "resolution=1d&(builtin:apps.web.action.largestContentfulPaint.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.browser\"):percentile(75.0):sort(value(percentile(75.0),descending)):limit(20)):limit(100):names"
+      ]
+    },
+    {
+      "name": "CLS (75th Percentile)  - By Browser",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 494,
+        "left": 2736,
+        "width": 798,
+        "height": 456
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.action.cumulativeLayoutShift.load.browser",
+          "spaceAggregation": "PERCENTILE_75",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.browser",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "Mobile Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  },
+                  {
+                    "value": "Tablet Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  },
+                  {
+                    "value": "Desktop Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              },
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Desktop Browser",
+                "color": "#9355b7"
+              },
+              {
+                "name": "Tablet Browser",
+                "color": "#14a8f5"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 0.11,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0.25,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": true
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "1d"
+      },
+      "metricExpressions": [
+        "resolution=1d&(builtin:apps.web.action.cumulativeLayoutShift.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.browser\"):percentile(75.0):sort(value(percentile(75.0),descending)):limit(20)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Errors by Origin and Type - Over Time",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1178,
+        "left": 3952,
+        "width": 760,
+        "height": 380
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.action.countOfErrors",
+          "spaceAggregation": "VALUE",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "Error origin",
+            "Error type"
+          ],
+          "sortBy": "ASC",
+          "sortByDimension": "Error origin",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "User type",
+                "filterType": "DIMENSION",
+                "filterOperator": "OR",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "Real users",
+                    "evaluator": "EQ"
+                  }
+                ]
+              },
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "metricSelector": "builtin:apps.web.action.countOfErrors:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"Error origin\",\"Error type\"):value:sort(value(value,ascending)) / builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy() * 100",
+          "rate": "NONE",
+          "enabled": false
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "STACKED_COLUMN",
+              "alias": "Error count"
+            },
+            "seriesOverrides": [
+              {
+                "name": "First party | First party | Request | Request",
+                "color": "#74cff7"
+              },
+              {
+                "name": "First party | First party | JavaScript | JavaScript",
+                "color": "#008cdb"
+              },
+              {
+                "name": "Third party | Third party | Request | Request",
+                "color": "#7F7F7F"
+              },
+              {
+                "name": "Third party | Third party | JavaScript | JavaScript",
+                "color": "#4D4D4D"
+              },
+              {
+                "name": "CDN | CDN | Request | Request",
+                "color": "#ef651f"
+              }
+            ]
+          },
+          {
+            "matcher": "B:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "RED",
+              "seriesType": "LINE",
+              "alias": "Error Rate"
+            },
+            "seriesOverrides": [
+              {
+                "name": "CDN | Request",
+                "color": "#ef651f"
+              },
+              {
+                "name": "Third party | Request",
+                "color": "#7F7F7F"
+              },
+              {
+                "name": "Third party | JavaScript",
+                "color": "#ab0c17"
+              },
+              {
+                "name": "First party | JavaScript",
+                "color": "#ffe11c"
+              },
+              {
+                "name": "First party | Request",
+                "color": "#FFFFFF"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": true
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "1d"
+      },
+      "metricExpressions": [
+        "resolution=1d&(builtin:apps.web.action.countOfErrors:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(eq(\"User type\",\"Real users\")))):splitBy(\"Error origin\",\"Error type\"):value:names:sort(dimension(\"Error origin\",ascending)):limit(20)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Home Page Load Error Rates (%) by Origin and Type - Over Time",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1558,
+        "left": 3952,
+        "width": 760,
+        "height": 380
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.action.countOfErrors",
+          "spaceAggregation": "VALUE",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "Error origin",
+            "Error type"
+          ],
+          "sortBy": "ASC",
+          "sortByDimension": "Error origin",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "User type",
+                "filterType": "DIMENSION",
+                "filterOperator": "OR",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "Real users",
+                    "evaluator": "EQ"
+                  }
+                ]
+              },
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": false
+        },
+        {
+          "id": "B",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "Error origin",
+            "Error type"
+          ],
+          "metricSelector": "builtin:apps.web.action.countOfErrors:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"Error origin\",\"Error type\"):value:sort(value(value,descending)) / builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy() * 100",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "STACKED_COLUMN",
+              "alias": "Error count"
+            },
+            "seriesOverrides": [
+              {
+                "name": "First party | First party | Request | Request",
+                "color": "#74cff7"
+              },
+              {
+                "name": "First party | First party | JavaScript | JavaScript",
+                "color": "#008cdb"
+              },
+              {
+                "name": "Third party | Third party | Request | Request",
+                "color": "#7F7F7F"
+              },
+              {
+                "name": "Third party | Third party | JavaScript | JavaScript",
+                "color": "#4D4D4D"
+              },
+              {
+                "name": "CDN | CDN | Request | Request",
+                "color": "#ef651f"
+              }
+            ]
+          },
+          {
+            "matcher": "B:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "RED",
+              "seriesType": "STACKED_AREA",
+              "alias": "Error Rate"
+            },
+            "seriesOverrides": [
+              {
+                "name": "CDN | Request",
+                "color": "#ef651f"
+              },
+              {
+                "name": "Third party | Request",
+                "color": "#7F7F7F"
+              },
+              {
+                "name": "Third party | JavaScript",
+                "color": "#4D4D4D"
+              },
+              {
+                "name": "First party | JavaScript",
+                "color": "#008cdb"
+              },
+              {
+                "name": "First party | Request",
+                "color": "#74cff7"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "RIGHT",
+              "queryIds": [
+                "B"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": true
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "1d"
+      },
+      "metricExpressions": [
+        "resolution=1d&(builtin:apps.web.action.countOfErrors:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"Error origin\",\"Error type\"):value:sort(value(value,descending))/builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy()*100):limit(100):names"
+      ]
+    },
+    {
+      "name": "Browser Type Distribution (%)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 532,
+        "left": 418,
+        "width": 760,
+        "height": 380
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "metricSelector": "builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy(\"dt.entity.browser\"):sort(value(auto,descending)) / builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy() * 100",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "STACKED_AREA",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "STACKED_AREA"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Desktop Browser",
+                "color": "#a972cc"
+              },
+              {
+                "name": "Tablet Browser",
+                "color": "#14a8f5"
+              },
+              {
+                "name": "Select series",
+                "color": "#4D4D4D"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": true
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "1d"
+      },
+      "metricExpressions": [
+        "resolution=1d&(builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy(\"dt.entity.browser\"):sort(value(auto,descending))/builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy()*100):limit(100):names"
+      ]
+    },
+    {
+      "name": "Median Speed Index Over Time by Browser Type",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 228,
+        "left": 1596,
+        "width": 760,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "metricSelector": "builtin:apps.web.action.speedIndex.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy(\"dt.entity.browser\"):sort(value(auto,descending)):limit(20)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Desktop Browser",
+                "color": "#9355b7"
+              },
+              {
+                "name": "Tablet Browser",
+                "color": "#14a8f5"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": true
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "1d"
+      },
+      "metricExpressions": [
+        "resolution=1d&(builtin:apps.web.action.speedIndex.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))),or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\"))))):splitBy(\"dt.entity.browser\"):sort(value(auto,descending)):limit(20)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Median Visually Complete Over Time by Browser Type",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 646,
+        "left": 1596,
+        "width": 760,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.action.visuallyComplete.load.browser",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.browser"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              },
+              {
+                "filter": "dt.entity.browser",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "Tablet Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  },
+                  {
+                    "value": "Desktop Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  },
+                  {
+                    "value": "Mobile Browser",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": [
+              {
+                "name": "Mobile Browser",
+                "color": "#7dc540"
+              },
+              {
+                "name": "Desktop Browser",
+                "color": "#9355b7"
+              },
+              {
+                "name": "Tablet Browser",
+                "color": "#14a8f5"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": true
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "1d"
+      },
+      "metricExpressions": [
+        "resolution=1d&(builtin:apps.web.action.visuallyComplete.load.browser:filter(and(or(in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Mobile Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Desktop Browser~\")\")),in(\"dt.entity.browser\",entitySelector(\"type(browser),entityName.equals(~\"Tablet Browser~\")\"))),or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.browser\"):sort(value(auto,descending)):limit(20)):limit(100):names"
+      ]
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 1178,
+        "left": 1216,
+        "width": 380,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Home Page SI (>2s) Impact on Site Exit",
+      "query": "SELECT isExitAction, Count(*) as \"Count\"\n FROM useraction WHERE application=\"www.ulta.com\" and speedIndex > 2000 and name = \"loading of home page\" and usersession.userType=\"REAL_USER\" GROUP BY isExitAction ORDER BY Count",
+      "type": "PIE_CHART",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 1482,
+        "left": 1216,
+        "width": 380,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Home Page VC (>3s) Impact on Site Exit",
+      "query": "SELECT isExitAction, Count(*) as \"Count\"\n FROM useraction WHERE application=\"www.ulta.com\" and visuallyCompleteTime > 3000 and name = \"loading of home page\" and usersession.userType=\"REAL_USER\" GROUP BY isExitAction Order By Count",
+      "type": "PIE_CHART",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 1140,
+        "left": 2394,
+        "width": 342,
+        "height": 266
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "FID Impact on Exit Rate",
+      "query": "SELECT isExitAction, Count(*) as Count\n FROM useraction \n WHERE application=\"www.ulta.com\" and name = \"loading of home page\" and firstInputDelay > 100 and usersession.userType=\"REAL_USER\"\nGROUP BY isExitAction\nORDER BY Count ASC",
+      "type": "PIE_CHART",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 228,
+        "left": 2394,
+        "width": 342,
+        "height": 266
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Slow LCP (>2.5s) Impact on Exit Rate",
+      "query": "SELECT isExitAction, Count(*) as Count\n FROM useraction \n WHERE application=\"www.ulta.com\" and name = \"loading of home page\" and largestContentfulPaint > 2500 and usersession.userType=\"REAL_USER\"\nGROUP BY isExitAction\nORDER BY Count ASC",
+      "type": "PIE_CHART",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 684,
+        "left": 2394,
+        "width": 342,
+        "height": 266
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "CLS Impact on Exit Rate",
+      "query": "SELECT isExitAction, Count(*) as Count\n FROM useraction \n WHERE application=\"www.ulta.com\" and name = \"loading of home page\" and cumulativeLayoutShift > 0.1 and usersession.userType=\"REAL_USER\"\nGROUP BY isExitAction\nORDER BY Count ASC",
+      "type": "PIE_CHART",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 228,
+        "left": 3572,
+        "width": 342,
+        "height": 266
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "APDEX Impact on Exit Rate",
+      "query": "SELECT isExitAction, Count(*) as Count\n FROM useraction \n WHERE application=\"www.ulta.com\" and name = \"loading of home page\" and apdexCategory IN (\"TOLERATING\", \"FRUSTRATED\") and usersession.userType=\"REAL_USER\"\nGROUP BY isExitAction\nORDER BY Count ASC",
+      "type": "PIE_CHART",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 1938,
+        "left": 3572,
+        "width": 380,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Error Impact on Exit Rate",
+      "query": "SELECT isExitAction, Count(*) as Count\n FROM useraction \n WHERE application=\"www.ulta.com\" and name = \"loading of home page\" and usersession.hasError=true and usersession.userType=\"REAL_USER\"\nGROUP BY isExitAction\nORDER BY Count ASC",
+      "type": "PIE_CHART",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 1938,
+        "left": 3952,
+        "width": 760,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Error Impact on Exit Rate",
+      "query": "SELECT DATETIME(starttime, \"MM/dd\", \"1d\") AS \"Date\", Count(*) as \"Exit Count\"\n FROM useraction WHERE application=\"www.ulta.com\" and (isExitAction=true or usersession.bounce=true) and name = \"loading of home page\" and usersession.hasError=true and usersession.userType=\"REAL_USER\" GROUP BY Date Order By Date",
+      "type": "COLUMN_CHART",
+      "visualizationConfig": {
+        "hasAxisBucketing": false
+      },
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 1178,
+        "left": 1596,
+        "width": 760,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Home Page SI (>2s) Impact on Site Exit",
+      "query": "SELECT DATETIME(starttime, \"MM/dd\", \"1d\") AS \"Date\", Count(*) as \"Exit Count\"\n FROM useraction WHERE application=\"www.ulta.com\" and speedIndex > 2000 and (isExitAction=true or usersession.bounce=true) and name = \"loading of home page\" and usersession.userType=\"REAL_USER\" GROUP BY Date Order By Date",
+      "type": "COLUMN_CHART",
+      "visualizationConfig": {
+        "hasAxisBucketing": false
+      },
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 1482,
+        "left": 1596,
+        "width": 760,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Home Page VC (>3s) Impact on Site Exit",
+      "query": "SELECT DATETIME(starttime, \"MM/dd\", \"1d\") AS \"Date\", Count(*) as \"Exit Count\"\n FROM useraction WHERE application=\"www.ulta.com\" and visuallyCompleteTime > 3000 and (isExitAction=true or usersession.bounce=true) and name = \"loading of home page\" and usersession.userType=\"REAL_USER\" GROUP BY Date Order By Date",
+      "type": "COLUMN_CHART",
+      "visualizationConfig": {
+        "hasAxisBucketing": false
+      },
+      "limit": 50
+    },
+    {
+      "name": "Page Loads (Throughput)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 380,
+        "width": 798,
+        "height": 456
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.action.count.load.browser",
+          "spaceAggregation": "VALUE",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.application_method"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "MINUTE",
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "metric": "builtin:apps.web.action.visuallyComplete.load.browser",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.application_method"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.application_method",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "loading of home page",
+                    "evaluator": "IN",
+                    "matchExactly": true
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "STACKED_COLUMN",
+              "alias": "Page Loads Per Minute"
+            },
+            "seriesOverrides": [
+              {
+                "name": "loading of home page",
+                "color": "#a972cc"
+              }
+            ]
+          },
+          {
+            "matcher": "B:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Median Visually complete"
+            },
+            "seriesOverrides": [
+              {
+                "name": "loading of home page",
+                "color": "#14a8f5"
+              }
+            ]
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            },
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "RIGHT",
+              "queryIds": [
+                "B"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": true
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "1d"
+      },
+      "metricExpressions": [
+        "resolution=1d&(builtin:apps.web.action.count.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.application_method\"):value:rate(1m):setUnit(PerMinute):sort(value(sum,descending)):limit(20)):limit(100):names,(builtin:apps.web.action.visuallyComplete.load.browser:filter(and(or(in(\"dt.entity.application_method\",entitySelector(\"type(application_method),entityName.equals(~\"loading of home page~\")\"))))):splitBy(\"dt.entity.application_method\"):median:sort(value(median,descending)):limit(20)):limit(100):names"
+      ]
+    }
+  ]
+}
