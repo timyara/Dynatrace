@@ -1,0 +1,631 @@
+{
+  "metadata": {
+    "configurationVersions": [
+      7
+    ],
+    "clusterVersion": "1.273.109.20230821-110118"
+  },
+  "id": "dd24e59d-4724-49c8-905b-61038ce20374",
+  "dashboardMetadata": {
+    "name": "Service & Key Request Failures Dashboard",
+    "shared": true,
+    "owner": "jndubuisi@ncgafrica.com",
+    "preset": true,
+    "popularity": 1,
+    "hasConsistentColors": false
+  },
+  "tiles": [
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 0,
+        "width": 456,
+        "height": 76
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "## Failing Key Requests (Top 30)\n---"
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 912,
+        "width": 456,
+        "height": 76
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "## Failing Database Connections (Top 30)\n---"
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 532,
+        "left": 1406,
+        "width": 380,
+        "height": 76
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "## Failing Database Connections\n---"
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 1406,
+        "width": 380,
+        "height": 76
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "## Failing Key Requests\n---"
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 266,
+        "left": 1406,
+        "width": 380,
+        "height": 76
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "## Failing Services\n---"
+    },
+    {
+      "name": "Success rate (server side)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 76,
+        "left": 1406,
+        "width": 380,
+        "height": 190
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Success rate (server side)",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:service.keyRequest.errors.server.rate",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TOP_LIST",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0,
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ]
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:service.keyRequest.errors.server.rate:splitBy():avg:sort(value(avg,descending)):limit(20)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Connection failure rate",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 608,
+        "left": 1406,
+        "width": 380,
+        "height": 190
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Connection failure rate",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "metricSelector": "builtin:service.dbconnections.failureRate:splitBy():value:auto:sort(value(sum,descending)):limit(10)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TOP_LIST",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0,
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ]
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:service.dbconnections.failureRate:splitBy():value:auto:sort(value(sum,descending)):limit(10)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Failure rate (server side  errors)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 342,
+        "left": 1406,
+        "width": 380,
+        "height": 190
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Failure rate (server side  errors)",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:service.errors.server.rate",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TOP_LIST",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0,
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ]
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:service.errors.server.rate:splitBy():avg:sort(value(avg,descending)):limit(20)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Connection failure rate",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 76,
+        "left": 912,
+        "width": 456,
+        "height": 1862
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Connection failure rate",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "metricSelector": "builtin:service.dbconnections.failureRate:splitBy(\"dt.entity.service\"):value:auto:sort(value(sum,descending)):limit(30)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TOP_LIST",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0,
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ]
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:service.dbconnections.failureRate:splitBy(\"dt.entity.service\"):value:auto:sort(value(sum,descending)):limit(30)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 456,
+        "width": 456,
+        "height": 76
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "## Failing Services (Top 30)\n---"
+    },
+    {
+      "name": "Failure rate (server side  errors)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 76,
+        "left": 456,
+        "width": 456,
+        "height": 1862
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Failure rate (server side  errors)",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "metricSelector": "builtin:service.errors.server.rate:splitBy(\"dt.entity.service\"):avg:auto:sort(value(avg,descending)):limit(30)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TOP_LIST",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "value": 0,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 10,
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ]
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:service.errors.server.rate:splitBy(\"dt.entity.service\"):avg:auto:sort(value(avg,descending)):limit(30)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Failure rate (server side  errors)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 76,
+        "left": 0,
+        "width": 456,
+        "height": 1862
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Failure rate (server side  errors)",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "metricSelector": "builtin:service.keyRequest.errors.server.rate:splitBy(\"dt.entity.service_method\"):avg:auto:sort(value(avg,descending)):limit(30)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TOP_LIST",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "value": 0,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 5,
+                "color": "#dc172a"
+              }
+            ],
+            "visible": true
+          }
+        ]
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:service.keyRequest.errors.server.rate:splitBy(\"dt.entity.service_method\"):avg:auto:sort(value(avg,descending)):limit(30)):limit(100):names"
+      ]
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 2166,
+        "width": 304,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Total number of user sessions !PU(usqlcolor):colors=#7c38a1,#fff29a,#aeebf0,#debbf3,#ffa86c,#f5d30f,#008cdb,#ffcc99,#a972cc,#ffcba4;dataLabels=true",
+      "query": "SELECT DISTINCT TOP(useraction.name,10) AS \"Number of user sessions\" , SUM(duration) from usersession WHERE userExperienceScore = \"SATISFIED\" ORDER BY userExperienceScore , sum(duration) DESC",
+      "type": "TABLE",
+      "limit": 50
+    },
+    {
+      "name": "Data explorer results",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 1786,
+        "width": 380,
+        "height": 342
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.action.countOfErrors",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.application_method"
+          ],
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TABLE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Error count (by key user action, user type, error type, error origin) [web]",
+            "rules": [
+              {
+                "value": 100,
+                "color": "#dc172a"
+              },
+              {
+                "value": 50,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "A",
+            "visible": true
+          }
+        ]
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:apps.web.action.countOfErrors:splitBy(\"dt.entity.application_method\"):avg:sort(value(avg,descending)):limit(20)):names"
+      ]
+    }
+  ]
+}
