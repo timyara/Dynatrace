@@ -1,0 +1,1962 @@
+{
+  "metadata": {
+    "configurationVersions": [
+      7
+    ],
+    "clusterVersion": "1.268.99.20230612-093340"
+  },
+  "id": "c42b9122-a146-4d4d-8c24-4bb700a9e678",
+  "dashboardMetadata": {
+    "name": "Kubernetes - Overview",
+    "shared": true,
+    "owner": "david.jones@dynatrace.com",
+    "popularity": 1,
+    "hasConsistentColors": false
+  },
+  "tiles": [
+    {
+      "name": "Events",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 76,
+        "left": 0,
+        "width": 456,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "High Level",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 76,
+        "left": 456,
+        "width": 684,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "Resource Utilization",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 76,
+        "left": 1178,
+        "width": 912,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "Events",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 114,
+        "left": 0,
+        "width": 456,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "dsfm:active_gate.kubernetes.events.observed",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.kubernetes_cluster"
+          ],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "STACKED_COLUMN",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "STACKED_COLUMN"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=null&(dsfm:active_gate.kubernetes.events.observed:splitBy(\"dt.entity.kubernetes_cluster\"):sum:sort(value(sum,descending)):limit(100)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Containers",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 114,
+        "left": 456,
+        "width": 228,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:cloud.kubernetes.pod.containers",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 1,
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:cloud.kubernetes.pod.containers:splitBy():sum:sort(value(sum,descending)):limit(100)):limit(100):names",
+        "resolution=null&(builtin:cloud.kubernetes.pod.containers:splitBy():sum:sort(value(sum,descending)):limit(100))"
+      ]
+    },
+    {
+      "name": "Desired Containers",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 342,
+        "left": 456,
+        "width": 228,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:cloud.kubernetes.pod.desiredContainers",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 1,
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:cloud.kubernetes.pod.desiredContainers:splitBy():sum:sort(value(sum,descending)):limit(100)):limit(100):names",
+        "resolution=null&(builtin:cloud.kubernetes.pod.desiredContainers:splitBy():sum:sort(value(sum,descending)):limit(100))"
+      ]
+    },
+    {
+      "name": "Running Pods",
+      "nameSize": "small",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 114,
+        "left": 684,
+        "width": 456,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Honeycomb",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:cloud.kubernetes.workload.runningPods",
+          "spaceAggregation": "MAX",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.cloud_application"
+          ],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "HONEYCOMB",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 2,
+                "color": "#006613"
+              },
+              {
+                "value": 1,
+                "color": "#7dc540"
+              },
+              {
+                "value": 0,
+                "color": "#e8f9dc"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": false,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "LAST_VALUE"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:cloud.kubernetes.workload.runningPods:splitBy(\"dt.entity.cloud_application\"):max:sort(value(max,descending)):limit(100)):names:last"
+      ]
+    },
+    {
+      "name": "Running Containers",
+      "nameSize": "small",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 418,
+        "left": 684,
+        "width": 456,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Honeycomb",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:containers.no_of_containers_running",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.docker_container_group_instance"
+          ],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "HONEYCOMB",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 2,
+                "color": "#006613"
+              },
+              {
+                "value": 1,
+                "color": "#7dc540"
+              },
+              {
+                "value": 0,
+                "color": "#e8f9dc"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": false,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "LAST_VALUE"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:containers.no_of_containers_running:splitBy(\"dt.entity.docker_container_group_instance\"):sum:sort(value(sum,descending)):limit(100)):names:last"
+      ]
+    },
+    {
+      "name": "Log viewer results",
+      "nameSize": "small",
+      "tileType": "LOG_QUERY",
+      "configured": true,
+      "bounds": {
+        "top": 342,
+        "left": 0,
+        "width": 456,
+        "height": 456
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "query": "event.type=\"k8s\"",
+      "sort": "desc",
+      "columnHeaders": [
+        "status",
+        "content"
+      ]
+    },
+    {
+      "name": "CPU Request Utilization",
+      "nameSize": "small",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 114,
+        "left": 1178,
+        "width": 456,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Honeycomb",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "cloud.gcp.kubernetes_io.container.cpu.request_utilization",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "container_name"
+          ],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "HONEYCOMB",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 2,
+                "color": "#93060e"
+              },
+              {
+                "value": 1,
+                "color": "#f28289"
+              },
+              {
+                "value": 0,
+                "color": "#ffeaea"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": false,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "LAST_VALUE"
+      },
+      "metricExpressions": [
+        "resolution=null&(cloud.gcp.kubernetes_io.container.cpu.request_utilization:splitBy(container_name):sum:sort(value(sum,descending)):limit(100)):names:last"
+      ]
+    },
+    {
+      "name": "CPU Request Utilization",
+      "nameSize": "small",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 342,
+        "left": 1178,
+        "width": 456,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Honeycomb",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "cloud.gcp.kubernetes_io.container.cpu.request_utilization",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "container_name"
+          ],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "hideLegend": true
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 2,
+                "color": "#93060e"
+              },
+              {
+                "value": 1,
+                "color": "#f28289"
+              },
+              {
+                "value": 0,
+                "color": "#ffeaea"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": false,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "LAST_VALUE"
+      },
+      "metricExpressions": [
+        "resolution=null&(cloud.gcp.kubernetes_io.container.cpu.request_utilization:splitBy(container_name):sum:sort(value(sum,descending)):limit(100)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Most CPU Intensive Pods",
+      "nameSize": "small",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 570,
+        "left": 1178,
+        "width": 456,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Honeycomb",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "cloud.gcp.kubernetes_io.container.cpu.request_utilization",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "container_name"
+          ],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TOP_LIST",
+        "global": {
+          "hideLegend": true
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "RED",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 2,
+                "color": "#93060e"
+              },
+              {
+                "value": 1,
+                "color": "#f28289"
+              },
+              {
+                "value": 0,
+                "color": "#ffeaea"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "LAST_VALUE"
+      },
+      "metricExpressions": [
+        "resolution=null&(cloud.gcp.kubernetes_io.container.cpu.request_utilization:splitBy(container_name):sum:sort(value(sum,descending)):limit(100)):limit(100):names:last"
+      ]
+    },
+    {
+      "name": "Container Memory Usage",
+      "nameSize": "small",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 114,
+        "left": 1634,
+        "width": 456,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Honeycomb",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:containers.memory_usage2",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "container_id"
+          ],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "HONEYCOMB",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 100000000,
+                "color": "#006bba"
+              },
+              {
+                "value": 50000000,
+                "color": "#74cff7"
+              },
+              {
+                "value": 0,
+                "color": "#e0f4fc"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": false,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "LAST_VALUE"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:containers.memory_usage2:splitBy(container_id):avg:sort(value(avg,descending)):limit(100)):names:last"
+      ]
+    },
+    {
+      "name": "Container Memory Usage",
+      "nameSize": "small",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 342,
+        "left": 1634,
+        "width": 456,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Honeycomb",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:containers.memory_usage2",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "container_id"
+          ],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "hideLegend": true
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 100000000,
+                "color": "#006bba"
+              },
+              {
+                "value": 50000000,
+                "color": "#74cff7"
+              },
+              {
+                "value": 0,
+                "color": "#e0f4fc"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "LAST_VALUE"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:containers.memory_usage2:splitBy(container_id):avg:sort(value(avg,descending)):limit(100)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Most memory intensive Containers",
+      "nameSize": "small",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 570,
+        "left": 1634,
+        "width": 456,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Honeycomb",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:containers.memory_usage2",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "container_id"
+          ],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TOP_LIST",
+        "global": {
+          "hideLegend": true
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 100000000,
+                "color": "#006bba"
+              },
+              {
+                "value": 50000000,
+                "color": "#74cff7"
+              },
+              {
+                "value": 0,
+                "color": "#e0f4fc"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "LAST_VALUE"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:containers.memory_usage2:splitBy(container_id):avg:sort(value(avg,descending)):limit(100)):limit(100):names:last"
+      ]
+    },
+    {
+      "name": "Daemon Sets",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 798,
+        "left": 0,
+        "width": 570,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "Deployments",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 798,
+        "left": 570,
+        "width": 570,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "Desired Pods",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 836,
+        "left": 0,
+        "width": 152,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:cloud.kubernetes.workload.desiredPods",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.cloud_application",
+                "filterType": "ENTITY_ATTRIBUTE",
+                "filterOperator": "OR",
+                "entityAttribute": "cloudApplicationDeploymentTypes",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "KUBERNETES_DAEMON_SET",
+                    "evaluator": "IN"
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": false,
+          "showSparkLine": false,
+          "linkTileColorToThreshold": false
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#9355b7"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:cloud.kubernetes.workload.desiredPods:filter(and(or(in(\"dt.entity.cloud_application\",entitySelector(\"type(cloud_application),cloudApplicationDeploymentTypes(~\"KUBERNETES_DAEMON_SET~\")\"))))):splitBy():sum:sort(value(sum,descending)):limit(100)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Desired Pods",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 836,
+        "left": 152,
+        "width": 418,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:cloud.kubernetes.workload.desiredPods",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.cloud_application",
+                "filterType": "ENTITY_ATTRIBUTE",
+                "filterOperator": "OR",
+                "entityAttribute": "cloudApplicationDeploymentTypes",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "KUBERNETES_DAEMON_SET",
+                    "evaluator": "IN"
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "hideLegend": true
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "PURPLE",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 120,
+                "color": "#612c85"
+              },
+              {
+                "value": 80,
+                "color": "#a972cc"
+              },
+              {
+                "value": 0,
+                "color": "#eedbfd"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:cloud.kubernetes.workload.desiredPods:filter(and(or(in(\"dt.entity.cloud_application\",entitySelector(\"type(cloud_application),cloudApplicationDeploymentTypes(~\"KUBERNETES_DAEMON_SET~\")\"))))):splitBy():sum:sort(value(sum,descending)):limit(100)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Desired Pods",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 836,
+        "left": 570,
+        "width": 152,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:cloud.kubernetes.workload.desiredPods",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.cloud_application",
+                "filterType": "ENTITY_ATTRIBUTE",
+                "filterOperator": "OR",
+                "entityAttribute": "cloudApplicationDeploymentTypes",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "KUBERNETES_DEPLOYMENT",
+                    "evaluator": "IN"
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": false,
+          "showSparkLine": false,
+          "linkTileColorToThreshold": false
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#9355b7"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=Inf&(builtin:cloud.kubernetes.workload.desiredPods:filter(and(or(in(\"dt.entity.cloud_application\",entitySelector(\"type(cloud_application),cloudApplicationDeploymentTypes(~\"KUBERNETES_DEPLOYMENT~\")\"))))):splitBy():sum:sort(value(sum,descending)):limit(100)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Desired Pods",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 836,
+        "left": 722,
+        "width": 418,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:cloud.kubernetes.workload.desiredPods",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.cloud_application",
+                "filterType": "ENTITY_ATTRIBUTE",
+                "filterOperator": "OR",
+                "entityAttribute": "cloudApplicationDeploymentTypes",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "KUBERNETES_DEPLOYMENT",
+                    "evaluator": "IN"
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "hideLegend": true
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "PURPLE",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 400,
+                "color": "#612c85"
+              },
+              {
+                "value": 200,
+                "color": "#a972cc"
+              },
+              {
+                "value": 0,
+                "color": "#eedbfd"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:cloud.kubernetes.workload.desiredPods:filter(and(or(in(\"dt.entity.cloud_application\",entitySelector(\"type(cloud_application),cloudApplicationDeploymentTypes(~\"KUBERNETES_DEPLOYMENT~\")\"))))):splitBy():sum:sort(value(sum,descending)):limit(100)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Network & Disk IO",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 798,
+        "left": 1178,
+        "width": 304,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "Network",
+      "nameSize": "small",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 836,
+        "left": 1178,
+        "width": 456,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "node_network_transmit_bytes_total.count",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.kubernetes_node"
+          ],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "hideLegend": true
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "PURPLE",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=null&(node_network_transmit_bytes_total.count:splitBy(\"dt.entity.kubernetes_node\"):avg:sort(value(avg,descending)):limit(100)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Disk Usage",
+      "nameSize": "small",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 836,
+        "left": 1634,
+        "width": 456,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "func:kubernetes_control_plane.node.disk.usage",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.kubernetes_node"
+          ],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "hideLegend": true
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=null&(func:kubernetes_control_plane.node.disk.usage:splitBy(\"dt.entity.kubernetes_node\"):avg:sort(value(avg,descending)):limit(100)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Image",
+      "tileType": "IMAGE",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 0,
+        "width": 304,
+        "height": 76
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "image": "data:image/webp;base64,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"
+    }
+  ]
+}

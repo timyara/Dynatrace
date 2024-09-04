@@ -1,0 +1,1922 @@
+{
+  "metadata": {
+    "configurationVersions": [
+      7
+    ],
+    "clusterVersion": "1.270.92.20230710-145414"
+  },
+  "id": "3f560e6f-5d99-430a-a0dc-0b4bb53f970d",
+  "dashboardMetadata": {
+    "name": "License DDU Consumption",
+    "shared": true,
+    "owner": "jerry.lobenstein@dynatrace.com",
+    "dashboardFilter": {
+      "timeframe": "-7d to now"
+    },
+    "preset": true,
+    "popularity": 1,
+    "hasConsistentColors": false
+  },
+  "tiles": [
+    {
+      "name": "METRICS",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 380,
+        "left": 0,
+        "width": 760,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "LOGS",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 380,
+        "left": 798,
+        "width": 760,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "SERVERLESS",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 912,
+        "left": 0,
+        "width": 760,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "TRACES",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 1444,
+        "left": 0,
+        "width": 760,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "DDUs Consumed",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 0,
+        "width": 1254,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:billing.ddu.metrics.total",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "metric": "builtin:billing.ddu.log.total",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "C",
+          "metric": "builtin:billing.ddu.serverless.total",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "D",
+          "metric": "builtin:billing.ddu.events.total",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "E",
+          "metric": "builtin:billing.ddu.traces.total",
+          "spaceAggregation": "SUM",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "sortBy": "DESC",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 100,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "STACKED_AREA",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "STACKED_AREA",
+              "alias": "Total DDU metrics consumption"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "B:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "STACKED_AREA"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "C:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "STACKED_AREA"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "D:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "STACKED_AREA"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "E:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "STACKED_AREA"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A",
+                "B",
+                "C",
+                "D",
+                "E"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:billing.ddu.metrics.total:splitBy():sum:sort(value(sum,descending)):limit(100)):limit(100):names,(builtin:billing.ddu.log.total:splitBy():sum:sort(value(sum,descending)):limit(100)):limit(100):names,(builtin:billing.ddu.serverless.total:splitBy():sum:sort(value(sum,descending)):limit(100)):limit(100):names,(builtin:billing.ddu.events.total:splitBy():sum:sort(value(sum,descending)):limit(100)):limit(100):names,(builtin:billing.ddu.traces.total:splitBy():sum:sort(value(sum,descending)):limit(100)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Total DDUs Consumed",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 1254,
+        "width": 304,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "metricSelector": "((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum)))",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "AUTO",
+              "max": "AUTO",
+              "position": "LEFT",
+              "queryIds": [
+                "A",
+                "B"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": false,
+          "showSparkLine": false,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum)))):limit(100):names:fold(sum)"
+      ]
+    },
+    {
+      "name": "EVENTS",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 912,
+        "left": 798,
+        "width": 760,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "Total %",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 418,
+        "left": 532,
+        "width": 228,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "metricSelector": "((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum))\n/\n(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))\n*\n(100)):toUnit(Percent,Percent)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "0,00",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": false,
+          "showSparkLine": false,
+          "linkTileColorToThreshold": false
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Session count - billed and unbilled - with Session Replay [web]",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum))/(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))*(100)):toUnit(Percent,Percent)):limit(100):names:fold(sum)"
+      ]
+    },
+    {
+      "name": "Total %",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 418,
+        "left": 1330,
+        "width": 228,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "metricSelector": "((builtin:billing.ddu.log.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum))\n/\n(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))\n*\n(100)):toUnit(Percent,Percent)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "0,00",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": false,
+          "showSparkLine": false,
+          "linkTileColorToThreshold": false
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Session count - billed and unbilled - with Session Replay [web]",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(((builtin:billing.ddu.log.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum))/(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))*(100)):toUnit(Percent,Percent)):limit(100):names:fold(sum)"
+      ]
+    },
+    {
+      "name": "Total %",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 950,
+        "left": 1330,
+        "width": 228,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "metricSelector": "((builtin:billing.ddu.events.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum))\n/\n(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))\n*\n(100)):toUnit(Percent,Percent)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "0,00",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": false,
+          "showSparkLine": false,
+          "linkTileColorToThreshold": false
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Session count - billed and unbilled - with Session Replay [web]",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(((builtin:billing.ddu.events.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum))/(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))*(100)):toUnit(Percent,Percent)):limit(100):names:fold(sum)"
+      ]
+    },
+    {
+      "name": "Total %",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 950,
+        "left": 532,
+        "width": 228,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "metricSelector": "((builtin:billing.ddu.serverless.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum))\n/\n(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))\n*\n(100)):toUnit(Percent,Percent)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": false,
+          "showSparkLine": false,
+          "linkTileColorToThreshold": false
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "A",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(((builtin:billing.ddu.serverless.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum))/(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))*(100)):toUnit(Percent,Percent)):limit(100):names:fold(sum)"
+      ]
+    },
+    {
+      "name": "Total %",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1482,
+        "left": 532,
+        "width": 228,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "metricSelector": "((builtin:billing.ddu.traces.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum))\n/\n(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))\n*\n(100)):toUnit(Percent,Percent)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "0,00",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": false,
+          "showSparkLine": false,
+          "linkTileColorToThreshold": false
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Session count - billed and unbilled - with Session Replay [web]",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(((builtin:billing.ddu.traces.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum))/(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))*(100)):toUnit(Percent,Percent)):limit(100):names:fold(sum)"
+      ]
+    },
+    {
+      "name": "DDU Consumption % - Metrics",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 418,
+        "left": 0,
+        "width": 532,
+        "height": 456
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "Metric Key"
+          ],
+          "metricSelector": "((builtin:billing.ddu.metrics.byMetric:splitBy(\"Metric Key\"):sum:default(0):sort(value(sum,descending)):fold(sum))\n/\n(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))\n*\n(100)):toUnit(Percent,Percent)",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "Metric Key"
+          ],
+          "metricSelector": "builtin:billing.ddu.metrics.byMetric:splitBy(\"Metric Key\"):sum:default(0):sort(value(sum,descending)):fold(sum)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TABLE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "0,00",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "%"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "B:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Units"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "A",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(((builtin:billing.ddu.metrics.byMetric:splitBy(\"Metric Key\"):sum:default(0):sort(value(sum,descending)):fold(sum))/(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))*(100)):toUnit(Percent,Percent)):names:fold(sum),(builtin:billing.ddu.metrics.byMetric:splitBy(\"Metric Key\"):sum:default(0):sort(value(sum,descending)):fold(sum)):names:fold(sum)"
+      ]
+    },
+    {
+      "name": "DDU Consumption % - Logs",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 418,
+        "left": 798,
+        "width": 532,
+        "height": 456
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.monitored_entity"
+          ],
+          "metricSelector": "((builtin:billing.ddu.log.byEntity:splitBy(\"dt.entity.monitored_entity\"):sum:default(0):sort(value(sum,descending)):fold(sum))\n/\n(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))\n*\n(100)):toUnit(Percent,Percent)",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.monitored_entity"
+          ],
+          "metricSelector": "builtin:billing.ddu.log.byEntity:splitBy(\"dt.entity.monitored_entity\"):sum:default(0):sort(value(sum,descending)):fold(sum)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TABLE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "0,00",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "%"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "B:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Units"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "A",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(((builtin:billing.ddu.log.byEntity:splitBy(\"dt.entity.monitored_entity\"):sum:default(0):sort(value(sum,descending)):fold(sum))/(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))*(100)):toUnit(Percent,Percent)):names:fold(sum),(builtin:billing.ddu.log.byEntity:splitBy(\"dt.entity.monitored_entity\"):sum:default(0):sort(value(sum,descending)):fold(sum)):names:fold(sum)"
+      ]
+    },
+    {
+      "name": "DDU Consumption % - Events",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 950,
+        "left": 798,
+        "width": 532,
+        "height": 456
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.monitored_entity"
+          ],
+          "metricSelector": "((builtin:billing.ddu.events.byEntity:splitBy(\"dt.entity.monitored_entity\"):sum:default(0):sort(value(sum,descending)):fold(sum))\n/\n(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))\n*\n(100)):toUnit(Percent,Percent)",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.monitored_entity"
+          ],
+          "metricSelector": "builtin:billing.ddu.events.byEntity:splitBy(\"dt.entity.monitored_entity\"):sum:default(0):sort(value(sum,descending)):fold(sum)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TABLE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "0,00",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "%"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "B:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Units"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "A",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(((builtin:billing.ddu.events.byEntity:splitBy(\"dt.entity.monitored_entity\"):sum:default(0):sort(value(sum,descending)):fold(sum))/(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))*(100)):toUnit(Percent,Percent)):names:fold(sum),(builtin:billing.ddu.events.byEntity:splitBy(\"dt.entity.monitored_entity\"):sum:default(0):sort(value(sum,descending)):fold(sum)):names:fold(sum)"
+      ]
+    },
+    {
+      "name": "DDU Consumption % - Serverless functions",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 950,
+        "left": 0,
+        "width": 532,
+        "height": 456
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.monitored_entity"
+          ],
+          "metricSelector": "((builtin:billing.ddu.serverless.byEntity:splitBy(\"dt.entity.monitored_entity\"):sum:default(0):sort(value(sum,descending)):fold(sum))\n/\n(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))\n*\n(100)):toUnit(Percent,Percent)",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.monitored_entity"
+          ],
+          "metricSelector": "builtin:billing.ddu.serverless.byEntity:splitBy(\"dt.entity.monitored_entity\"):sum:default(0):sort(value(sum,descending)):fold(sum)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TABLE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "%"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "B:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Units"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "A",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(((builtin:billing.ddu.serverless.byEntity:splitBy(\"dt.entity.monitored_entity\"):sum:default(0):sort(value(sum,descending)):fold(sum))/(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))*(100)):toUnit(Percent,Percent)):names:fold(sum),(builtin:billing.ddu.serverless.byEntity:splitBy(\"dt.entity.monitored_entity\"):sum:default(0):sort(value(sum,descending)):fold(sum)):names:fold(sum)"
+      ]
+    },
+    {
+      "name": "DDU Consumption % - Traces",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1482,
+        "left": 0,
+        "width": 532,
+        "height": 456
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.monitored_entity"
+          ],
+          "metricSelector": "((builtin:billing.ddu.traces.byEntity:splitBy(\"dt.entity.monitored_entity\"):sum:default(0):sort(value(sum,descending)):fold(sum))\n/\n(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))\n+\n(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))\n*\n(100)):toUnit(Percent,Percent)",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.monitored_entity"
+          ],
+          "metricSelector": "builtin:billing.ddu.traces.byEntity:splitBy(\"dt.entity.monitored_entity\"):sum:default(0):sort(value(sum,descending)):fold(sum)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TABLE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "0,00",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "%"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "B:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Units"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "A",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(((builtin:billing.ddu.traces.byEntity:splitBy(\"dt.entity.monitored_entity\"):sum:default(0):sort(value(sum,descending)):fold(sum))/(((builtin:billing.ddu.metrics.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.log.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.events.total:splitBy():sum:default(0):fold(sum))+(builtin:billing.ddu.traces.total:splitBy():sum:default(0):fold(sum))))*(100)):toUnit(Percent,Percent)):names:fold(sum),(builtin:billing.ddu.traces.byEntity:splitBy(\"dt.entity.monitored_entity\"):sum:default(0):sort(value(sum,descending)):fold(sum)):names:fold(sum)"
+      ]
+    },
+    {
+      "name": "Total Units",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 646,
+        "left": 532,
+        "width": 228,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "metricSelector": "builtin:billing.ddu.metrics.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": false,
+          "showSparkLine": false,
+          "linkTileColorToThreshold": false
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Session count - billed and unbilled - with Session Replay [web]",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:billing.ddu.metrics.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum)):limit(100):names:fold(sum)"
+      ]
+    },
+    {
+      "name": "Total Units",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 646,
+        "left": 1330,
+        "width": 228,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "metricSelector": "builtin:billing.ddu.log.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": false,
+          "showSparkLine": false,
+          "linkTileColorToThreshold": false
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Session count - billed and unbilled - with Session Replay [web]",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:billing.ddu.log.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum)):limit(100):names:fold(sum)"
+      ]
+    },
+    {
+      "name": "Total Units",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1178,
+        "left": 532,
+        "width": 228,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "metricSelector": "builtin:billing.ddu.serverless.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": false,
+          "showSparkLine": false,
+          "linkTileColorToThreshold": false
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "A",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:billing.ddu.serverless.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum)):limit(100):names:fold(sum)"
+      ]
+    },
+    {
+      "name": "Total Units",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1178,
+        "left": 1330,
+        "width": 228,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "metricSelector": "builtin:billing.ddu.events.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": false,
+          "showSparkLine": false,
+          "linkTileColorToThreshold": false
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Session count - billed and unbilled - with Session Replay [web]",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:billing.ddu.events.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum)):limit(100):names:fold(sum)"
+      ]
+    },
+    {
+      "name": "Total Units",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 1710,
+        "left": 532,
+        "width": 228,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Single value",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [],
+          "metricSelector": "builtin:billing.ddu.traces.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "SINGLE_VALUE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "singleValueSettings": {
+          "showTrend": false,
+          "showSparkLine": false,
+          "linkTileColorToThreshold": false
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Session count - billed and unbilled - with Session Replay [web]",
+            "rules": [
+              {
+                "color": "#7dc540"
+              },
+              {
+                "color": "#f5d30f"
+              },
+              {
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "TOTAL",
+        "foldAggregation": "SUM"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:billing.ddu.traces.total:splitBy():sum:default(0):sort(value(sum,descending)):fold(sum)):limit(100):names:fold(sum)"
+      ]
+    }
+  ]
+}
