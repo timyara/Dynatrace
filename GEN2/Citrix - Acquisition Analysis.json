@@ -1,0 +1,309 @@
+{
+  "metadata": {
+    "configurationVersions": [
+      7
+    ],
+    "clusterVersion": "1.291.99.20240515-061005"
+  },
+  "id": "9a7c78bd-34c3-4ced-93c0-d1a66e63c54c",
+  "dashboardMetadata": {
+    "name": "Citrix - Acquisition Analysis",
+    "shared": true,
+    "owner": "phillip.rand@dynatrace.com",
+    "tags": [
+      "Citrix",
+      "Configurator"
+    ],
+    "preset": true,
+    "popularity": 1,
+    "hasConsistentColors": false
+  },
+  "tiles": [
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 836,
+        "left": 494,
+        "width": 684,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Slowest Client Startups",
+      "query": "select usersession.userId as [User ID], name as [Desktop Client Name], duration as [Duration] FROM useraction where usersession.userId IS NOT NULL and name like \"*Start*\" and application=\"Citrix_RUM\" group by usersession.userId, name, duration ORDER BY duration DESC",
+      "type": "TABLE",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 380,
+        "left": 0,
+        "width": 228,
+        "height": 190
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Citrix Logins",
+      "query": "SELECT count(name) as [Count] from useraction where name = \"Citrix login\" and application=\"Citrix_RUM\"",
+      "type": "SINGLE_VALUE",
+      "timeFrameShift": "dynamic",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 380,
+        "left": 228,
+        "width": 228,
+        "height": 190
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Login Duration",
+      "query": "select avg(duration) as [Average] from useraction where name=\"Citrix login\" and application=\"Citrix_RUM\"",
+      "type": "SINGLE_VALUE",
+      "timeFrameShift": "dynamic",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 0,
+        "width": 456,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "User Experience Score",
+      "query": "select count(usersession.userSessionId) AS users, usersession.userExperienceScore FROM useraction where useraction.application=\"Citrix_RUM\" group by usersession.userExperienceScore",
+      "type": "PIE_CHART",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 1216,
+        "width": 228,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Storefront ICA Launches",
+      "query": "SELECT count(name) as [Count] from useraction where name like \"*launchica*\" and application=\"Citrix NetScaler Front\"",
+      "type": "SINGLE_VALUE",
+      "timeFrameShift": "dynamic",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 494,
+        "width": 228,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Start Desktop",
+      "query": "select avg(duration) as [Average] from useraction where name startswith \"Client Start\" and application=\"Citrix_RUM\" ",
+      "type": "SINGLE_VALUE",
+      "timeFrameShift": "dynamic",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 342,
+        "left": 1216,
+        "width": 684,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "ICA Launch",
+      "query": "select count(name) as [Count], name as [Start Ups] from useraction where name like \"*launchica*\" and application = \"Citrix NetScaler Front\" GROUP BY name",
+      "type": "TABLE",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 342,
+        "left": 494,
+        "width": 684,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Average Startup Duration ",
+      "query": "select AVG(duration) as [Duration], name as [Start Ups] from useraction where name STARTSWITH \"Client Start\" and application=\"Citrix_RUM\" GROUP BY name",
+      "type": "TABLE",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 570,
+        "left": 1216,
+        "width": 684,
+        "height": 266
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Storefront Starts by Location",
+      "query": "SELECT count(name) as [Count], Avg(duration) as [Duration], usersession.city as [City] from useraction where name like \"*launchica*\" and application = \"Citrix NetScaler Front\" GROUP BY usersession.city",
+      "type": "TABLE",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 1444,
+        "width": 456,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Storefront ICA Launch",
+      "query": "select DISTINCT DATETIME(useraction.endtime, \"HH:mm\", \"15m\"), avg(useraction.duration) as average from usersession where useraction.name like \"*/launchica/*\" and useraction.application=\"Citrix NetScaler Front\" limit 8",
+      "type": "LINE_CHART",
+      "visualizationConfig": {
+        "hasAxisBucketing": false
+      },
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 570,
+        "left": 494,
+        "width": 684,
+        "height": 266
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Client Starts by Location",
+      "query": "SELECT count(name) as [Count], Avg(duration) as [Duration], usersession.city as [City] from useraction where name startswith \"Client Start\" and application=\"Citrix_RUM\" GROUP BY usersession.city",
+      "type": "TABLE",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 722,
+        "width": 456,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Client Starts",
+      "query": "select DISTINCT DATETIME(useraction.endtime, \"HH:mm\", \"15m\"), avg(useraction.duration) as average from usersession where useraction.name startswith \"Client Start\" and useraction.application=\"Citrix_RUM\" limit 8",
+      "type": "LINE_CHART",
+      "visualizationConfig": {
+        "hasAxisBucketing": false
+      },
+      "limit": 50
+    },
+    {
+      "name": "User Experience",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 0,
+        "width": 304,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "Client Starts",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 494,
+        "width": 304,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "Storefront ICA Launches",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 1216,
+        "width": 380,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 570,
+        "left": 0,
+        "width": 456,
+        "height": 266
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Citrix Logins",
+      "query": "select DISTINCT DATETIME(useraction.endtime, \"HH:mm\", \"15m\"), avg(useraction.duration) as average from useraction where name is  \"Citrix login\" and useraction.application=\"Citrix_RUM\" limit 8",
+      "type": "LINE_CHART",
+      "visualizationConfig": {
+        "hasAxisBucketing": false
+      },
+      "limit": 50
+    },
+    {
+      "name": "Logins",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 342,
+        "left": 0,
+        "width": 304,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    }
+  ]
+}

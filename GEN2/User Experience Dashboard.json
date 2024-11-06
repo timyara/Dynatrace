@@ -1,0 +1,749 @@
+{
+  "metadata": {
+    "configurationVersions": [
+      7
+    ],
+    "clusterVersion": "1.273.109.20230821-110118"
+  },
+  "id": "0f14b874-ffd9-49c5-9a4f-54be4946e1d6",
+  "dashboardMetadata": {
+    "name": "User Experience Dashboard",
+    "shared": true,
+    "owner": "jason.nai@dynatrace.com",
+    "preset": true,
+    "popularity": 1,
+    "hasConsistentColors": false
+  },
+  "tiles": [
+    {
+      "name": "Volume",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 0,
+        "width": 608,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "World map",
+      "tileType": "APPLICATION_WORLDMAP",
+      "configured": true,
+      "bounds": {
+        "top": 190,
+        "left": 0,
+        "width": 304,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "assignedEntities": [
+        "APPLICATION-08EBD5603755FA87",
+        "GEOLOCATION-0000000000000000",
+        "WORLD"
+      ],
+      "metric": "SESSION_USERS"
+    },
+    {
+      "name": "Web application",
+      "tileType": "APPLICATION",
+      "configured": true,
+      "bounds": {
+        "top": 190,
+        "left": 304,
+        "width": 304,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "assignedEntities": [
+        "APPLICATION-08EBD5603755FA87"
+      ]
+    },
+    {
+      "name": "Satisfaction",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 646,
+        "width": 608,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 646,
+        "width": 304,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Satisfaction balance",
+      "query": "SELECT userExperienceScore, COUNT(*) AS \"Satisfaction balance\" FROM usersession WHERE useraction.application IS \"www.cloud.easytravel.com\" GROUP BY userExperienceScore",
+      "type": "PIE_CHART",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 950,
+        "width": 304,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Satisfaction change",
+      "query": "SELECT userExperienceScore, COUNT(*) AS \"User sessions\" FROM usersession WHERE useraction.application IS \"www.cloud.easytravel.com\" GROUP BY userExperienceScore",
+      "type": "COLUMN_CHART",
+      "timeFrameShift": "-1w",
+      "visualizationConfig": {
+        "hasAxisBucketing": false
+      },
+      "limit": 50
+    },
+    {
+      "name": "",
+      "tileType": "CUSTOM_CHARTING",
+      "configured": true,
+      "bounds": {
+        "top": 342,
+        "left": 646,
+        "width": 608,
+        "height": 418
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "filterConfig": {
+        "type": "MIXED",
+        "customName": "Apdex",
+        "defaultName": "Custom chart",
+        "chartConfig": {
+          "legendShown": true,
+          "type": "TOP_LIST",
+          "series": [
+            {
+              "metric": "builtin:apps.web.action.apdex",
+              "aggregation": "AVG",
+              "type": "LINE",
+              "entityType": "APPLICATION_METHOD",
+              "dimensions": [
+                {
+                  "id": "0",
+                  "name": "dt.entity.application_method",
+                  "values": [],
+                  "entityDimension": true
+                }
+              ],
+              "sortAscending": false,
+              "sortColumn": true,
+              "aggregationRate": "TOTAL"
+            }
+          ],
+          "resultMetadata": {
+            "APPLICATION_METHOD-D05025DEFD41FEAB¦APPLICATION_METHOD»APPLICATION_METHOD-D05025DEFD41FEAB»truebuiltin:apps.web.action.apdex|AVG|TOTAL|LINE|APPLICATION_METHOD": {
+              "lastModified": 1603705754752,
+              "customColor": "#b4e5f9"
+            },
+            "APPLICATION_METHOD-32C2C127D9DD8233¦APPLICATION_METHOD»APPLICATION_METHOD-32C2C127D9DD8233»truebuiltin:apps.web.action.apdex|AVG|TOTAL|LINE|APPLICATION_METHOD": {
+              "lastModified": 1603705756605,
+              "customColor": "#00a1b2"
+            },
+            "APPLICATION_METHOD-013BAAEEC719A532¦APPLICATION_METHOD»APPLICATION_METHOD-013BAAEEC719A532»truebuiltin:apps.web.action.apdex|AVG|TOTAL|LINE|APPLICATION_METHOD": {
+              "lastModified": 1603705747177,
+              "customColor": "#7c38a1"
+            },
+            "APPLICATION_METHOD-E10FBD70085426C6¦APPLICATION_METHOD»APPLICATION_METHOD-E10FBD70085426C6»truebuiltin:apps.web.action.apdex|AVG|TOTAL|LINE|APPLICATION_METHOD": {
+              "lastModified": 1603705753481,
+              "customColor": "#2ab6f4"
+            },
+            "APPLICATION_METHOD-F74CE87DA3F11902¦APPLICATION_METHOD»APPLICATION_METHOD-F74CE87DA3F11902»truebuiltin:apps.web.action.apdex|AVG|TOTAL|LINE|APPLICATION_METHOD": {
+              "lastModified": 1603705758249,
+              "customColor": "#4fd5e0"
+            },
+            "APPLICATION_METHOD-22BAAD4177E2C69B¦APPLICATION_METHOD»APPLICATION_METHOD-22BAAD4177E2C69B»truebuiltin:apps.web.action.apdex|AVG|TOTAL|LINE|APPLICATION_METHOD": {
+              "lastModified": 1603705749590,
+              "customColor": "#debbf3"
+            },
+            "APPLICATION_METHOD-9B3C6657FF2265CC¦APPLICATION_METHOD»APPLICATION_METHOD-9B3C6657FF2265CC»truebuiltin:apps.web.action.apdex|AVG|TOTAL|LINE|APPLICATION_METHOD": {
+              "lastModified": 1603705752095,
+              "customColor": "#008cdb"
+            },
+            "APPLICATION_METHOD-261F03E052E5A0FA¦APPLICATION_METHOD»APPLICATION_METHOD-261F03E052E5A0FA»truebuiltin:apps.web.action.apdex|AVG|TOTAL|LINE|APPLICATION_METHOD": {
+              "lastModified": 1603705748294,
+              "customColor": "#a972cc"
+            },
+            "APPLICATION_METHOD-8D35F0BF1F34C9B8¦APPLICATION_METHOD»APPLICATION_METHOD-8D35F0BF1F34C9B8»truebuiltin:apps.web.action.apdex|AVG|TOTAL|LINE|APPLICATION_METHOD": {
+              "lastModified": 1603676772403,
+              "customColor": "#2ab6f4"
+            }
+          }
+        },
+        "filtersPerEntityType": {
+          "APPLICATION_METHOD": {
+            "SPECIFIC_ENTITIES": [
+              "APPLICATION_METHOD-32C2C127D9DD8233",
+              "APPLICATION_METHOD-D05025DEFD41FEAB",
+              "APPLICATION_METHOD-013BAAEEC719A532",
+              "APPLICATION_METHOD-9B3C6657FF2265CC",
+              "APPLICATION_METHOD-261F03E052E5A0FA",
+              "APPLICATION_METHOD-F74CE87DA3F11902",
+              "APPLICATION_METHOD-22BAAD4177E2C69B",
+              "APPLICATION_METHOD-E10FBD70085426C6"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Time on task",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 570,
+        "left": 0,
+        "width": 608,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "Custom chart",
+      "tileType": "CUSTOM_CHARTING",
+      "configured": true,
+      "bounds": {
+        "top": 608,
+        "left": 0,
+        "width": 608,
+        "height": 266
+      },
+      "tileFilter": {
+        "timeframe": "today"
+      },
+      "isAutoRefreshDisabled": false,
+      "filterConfig": {
+        "type": "MIXED",
+        "customName": "Booking Transaction - Synthetic time on task",
+        "defaultName": "Custom chart",
+        "chartConfig": {
+          "legendShown": true,
+          "type": "TIMESERIES",
+          "series": [
+            {
+              "metric": "builtin:synthetic.browser.event.totalDuration",
+              "aggregation": "AVG",
+              "type": "BAR",
+              "entityType": "SYNTHETIC_TEST_STEP",
+              "dimensions": [
+                {
+                  "id": "0",
+                  "name": "dt.entity.synthetic_test_step",
+                  "values": [],
+                  "entityDimension": true
+                }
+              ],
+              "sortAscending": false,
+              "sortColumn": true,
+              "aggregationRate": "TOTAL"
+            }
+          ],
+          "resultMetadata": {}
+        },
+        "filtersPerEntityType": {
+          "SYNTHETIC_TEST_STEP": {
+            "WEBCHECK_TEST_OF_STEP": [
+              "SYNTHETIC_TEST-75E984E6038AFB93"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 304,
+        "width": 304,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "User logins ",
+      "query": "SELECT COUNT(*) AS \"Number of user sessions\" from usersession WHERE useraction.name is \"click on \"\"Login\"\" on page /orange.jsf\" AND useraction.application IS \"www.easytravel.com\"",
+      "type": "SINGLE_VALUE",
+      "timeFrameShift": "-1w",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 0,
+        "width": 304,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Total number of user sessions",
+      "query": "SELECT COUNT(*) AS \"Number of user sessions\" from usersession WHERE useraction.application IS \"www.easytravel.com\"",
+      "type": "SINGLE_VALUE",
+      "timeFrameShift": "-1w",
+      "limit": 50
+    },
+    {
+      "name": "Custom chart",
+      "tileType": "CUSTOM_CHARTING",
+      "configured": true,
+      "bounds": {
+        "top": 1140,
+        "left": 0,
+        "width": 608,
+        "height": 266
+      },
+      "tileFilter": {
+        "timeframe": "today"
+      },
+      "isAutoRefreshDisabled": false,
+      "filterConfig": {
+        "type": "MIXED",
+        "customName": "Loan Enquiry - Synthetic time on task",
+        "defaultName": "Custom chart",
+        "chartConfig": {
+          "legendShown": true,
+          "type": "TIMESERIES",
+          "series": [
+            {
+              "metric": "builtin:synthetic.browser.event.totalDuration",
+              "aggregation": "PERCENTILE",
+              "percentile": 50,
+              "type": "BAR",
+              "entityType": "SYNTHETIC_TEST_STEP",
+              "dimensions": [
+                {
+                  "id": "0",
+                  "name": "dt.entity.synthetic_test_step",
+                  "values": [],
+                  "entityDimension": true
+                }
+              ],
+              "sortAscending": false,
+              "sortColumn": true,
+              "aggregationRate": "TOTAL"
+            }
+          ],
+          "resultMetadata": {}
+        },
+        "filtersPerEntityType": {
+          "SYNTHETIC_TEST_STEP": {
+            "WEBCHECK_TEST_OF_STEP": [
+              "SYNTHETIC_TEST-063D7A8E5A9DCEEE"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Custom chart",
+      "tileType": "CUSTOM_CHARTING",
+      "configured": true,
+      "bounds": {
+        "top": 874,
+        "left": 0,
+        "width": 608,
+        "height": 266
+      },
+      "tileFilter": {
+        "timeframe": "today"
+      },
+      "isAutoRefreshDisabled": false,
+      "filterConfig": {
+        "type": "MIXED",
+        "customName": "Search Payment - Synthetic time on task",
+        "defaultName": "Custom chart",
+        "chartConfig": {
+          "legendShown": true,
+          "type": "TIMESERIES",
+          "series": [
+            {
+              "metric": "builtin:synthetic.browser.event.totalDuration",
+              "aggregation": "PERCENTILE",
+              "percentile": 50,
+              "type": "BAR",
+              "entityType": "SYNTHETIC_TEST_STEP",
+              "dimensions": [
+                {
+                  "id": "0",
+                  "name": "dt.entity.synthetic_test_step",
+                  "values": [],
+                  "entityDimension": true
+                }
+              ],
+              "sortAscending": false,
+              "sortColumn": true,
+              "aggregationRate": "TOTAL"
+            }
+          ],
+          "resultMetadata": {}
+        },
+        "filtersPerEntityType": {
+          "SYNTHETIC_TEST_STEP": {
+            "WEBCHECK_TEST_OF_STEP": [
+              "SYNTHETIC_TEST-19843C04B31DDB4D"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Ease of using",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 798,
+        "left": 646,
+        "width": 608,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 836,
+        "left": 646,
+        "width": 304,
+        "height": 266
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Top browser versions",
+      "query": "SELECT browserFamily, COUNT(*) FROM usersession WHERE useraction.application IS \"www.easytravel.com\" AND browserFamily IS NOT NULL AND browserFamily IS NOT \"Synthetic monitor\" GROUP BY browserFamily",
+      "type": "PIE_CHART",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 836,
+        "left": 950,
+        "width": 304,
+        "height": 266
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Top rage clicks by browser version",
+      "query": "SELECT browserFamily, COUNT(numberOfRageClicks) FROM usersession WHERE useraction.application IS \"www.easytravel.com\" AND browserFamily IS NOT NULL AND browserFamily IS NOT \"Synthetic monitor\" GROUP BY browserFamily",
+      "type": "PIE_CHART",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 1102,
+        "left": 646,
+        "width": 608,
+        "height": 304
+      },
+      "tileFilter": {
+        "timeframe": "-14d"
+      },
+      "isAutoRefreshDisabled": false,
+      "customName": "Rage clicks over time - last 2 weeks",
+      "query": "SELECT DATETIME(startTime, 'MM-dd'), SUM(numberOfRageClicks) AS \"Rage Clicks\" FROM usersession WHERE useraction.application IS \"www.angular.easytravel.com\"  GROUP BY DATETIME(startTime, 'MM-dd')",
+      "type": "COLUMN_CHART",
+      "visualizationConfig": {
+        "hasAxisBucketing": false
+      },
+      "limit": 50
+    },
+    {
+      "name": "Custom chart",
+      "tileType": "CUSTOM_CHARTING",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 1292,
+        "width": 608,
+        "height": 228
+      },
+      "tileFilter": {
+        "timeframe": "-14d"
+      },
+      "isAutoRefreshDisabled": false,
+      "filterConfig": {
+        "type": "MIXED",
+        "customName": "Total errors over time - last 2 weeks",
+        "defaultName": "Custom chart",
+        "chartConfig": {
+          "legendShown": true,
+          "type": "TIMESERIES",
+          "series": [
+            {
+              "metric": "builtin:apps.web.countOfErrors",
+              "aggregation": "NONE",
+              "type": "AREA",
+              "entityType": "APPLICATION",
+              "dimensions": [
+                {
+                  "id": "0",
+                  "name": "dt.entity.application",
+                  "values": [],
+                  "entityDimension": true
+                },
+                {
+                  "id": "2",
+                  "name": "Error type",
+                  "values": [],
+                  "entityDimension": false
+                },
+                {
+                  "id": "3",
+                  "name": "Error origin",
+                  "values": [],
+                  "entityDimension": false
+                }
+              ],
+              "sortAscending": false,
+              "sortColumn": true,
+              "aggregationRate": "TOTAL"
+            }
+          ],
+          "resultMetadata": {}
+        },
+        "filtersPerEntityType": {
+          "APPLICATION": {
+            "SPECIFIC_ENTITIES": [
+              "APPLICATION-008569CDB300AE03"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "Pain points",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 1292,
+        "width": 608,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "User journey funnel",
+      "tileType": "HEADER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 1938,
+        "width": 608,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 266,
+        "left": 1292,
+        "width": 608,
+        "height": 342
+      },
+      "tileFilter": {
+        "timeframe": "Last 2 hours"
+      },
+      "isAutoRefreshDisabled": false,
+      "customName": "Top JavaScript errors",
+      "query": "select usererror.name as \"JavaScript Error\", count(*) as \"Impacted Users\" from usersession where usererror.name IS NOT NULL group by usererror.name",
+      "type": "TABLE",
+      "timeFrameShift": "-3h",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 2242,
+        "width": 304,
+        "height": 152
+      },
+      "tileFilter": {
+        "timeframe": "Last 2 hours"
+      },
+      "isAutoRefreshDisabled": false,
+      "customName": "Paid amount",
+      "query": "SELECT SUM(longProperties.income) AS \"Total paid amount in USD\" FROM usersession WHERE useraction.application IS \"www.angular.easytravel.com\"",
+      "type": "SINGLE_VALUE",
+      "timeFrameShift": "-1w",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 608,
+        "left": 1292,
+        "width": 608,
+        "height": 798
+      },
+      "tileFilter": {
+        "timeframe": "today"
+      },
+      "isAutoRefreshDisabled": false,
+      "customName": "VIP users with a FRUSTRATED experience - Sorted by rage clicks",
+      "query": "SELECT userId AS \"User ID\", stringProperties.loyalty_status AS \"Membership\", numberOfRageClicks AS \"Rage Clicks\", SUM(useraction.javascriptErrorCount) AS \"Java Script Error Count\" FROM usersession WHERE useraction.application=\"www.angular.easytravel.com\" AND userExperienceScore IS \"FRUSTRATED\" AND stringProperties.loyalty_status IS \"Platinum\" OR stringProperties.loyalty_status IS \"Gold\" GROUP BY userId, stringProperties.loyalty_status, numberOfRageClicks ORDER BY numberOfRageClicks DESC, Membership DESC",
+      "type": "TABLE",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 1938,
+        "width": 304,
+        "height": 152
+      },
+      "tileFilter": {
+        "timeframe": "Last 2 hours"
+      },
+      "isAutoRefreshDisabled": false,
+      "customName": "Booking amount",
+      "query": "SELECT SUM(doubleProperties.revenue) AS \"Total booking amount in USD\" FROM usersession WHERE useraction.application IS \"www.angular.easytravel.com\"",
+      "type": "SINGLE_VALUE",
+      "timeFrameShift": "-1w",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 494,
+        "left": 1938,
+        "width": 608,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Mobile booking - Conversion Funnel",
+      "query": "SELECT FUNNEL(useraction.name=\"AppStart (easyTravel)\" AS \"Open easytravel\", useraction.name = \"searchJourney\" AS \"Search journey\", useraction.name = \"bookJourney\" AS \"Book journey\") FROM usersession",
+      "type": "FUNNEL",
+      "timeFrameShift": "-1w",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 722,
+        "left": 1938,
+        "width": 608,
+        "height": 228
+      },
+      "tileFilter": {
+        "timeframe": "-30m"
+      },
+      "isAutoRefreshDisabled": false,
+      "customName": "Website booking - Conversion Funnel",
+      "query": "SELECT FUNNEL(useraction.name=\"AppStart (easyTravel)\" AS \"Start payment\",\n useraction.name = \"searchJourney\" AS \"Enter amount\",\n useraction.name = \"bookJourney\" AS \"Enter payment details\",\n useraction.name=\"Touch on Berlin\" as \"Submit payment\") FROM usersession",
+      "type": "FUNNEL",
+      "timeFrameShift": "-1w",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 950,
+        "left": 1938,
+        "width": 608,
+        "height": 228
+      },
+      "tileFilter": {
+        "timeframe": "-30m"
+      },
+      "isAutoRefreshDisabled": false,
+      "customName": "Enrolment application - Conversion Funnel",
+      "query": "SELECT FUNNEL(useraction.name=\"AppStart (easyTravel)\" AS \"Enroll start\",\nuseraction.name=\"AppStart (easyTravel)\" AS \"Personal info\",\nuseraction.name = \"searchJourney\" AS \"Financial info\",\nuseraction.name = \"bookJourney\" AS \"Enroll submit\") FROM usersession",
+      "type": "FUNNEL",
+      "timeFrameShift": "-1w",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 190,
+        "left": 1938,
+        "width": 608,
+        "height": 304
+      },
+      "tileFilter": {
+        "timeframe": "today"
+      },
+      "isAutoRefreshDisabled": false,
+      "customName": "Top customers by transaction volume",
+      "query": "SELECT userId AS \"Name\", stringProperties.loyalty_status AS \"Membership\", longProperties.income AS \"Transaction volume in USD\" FROM usersession WHERE useraction.application IS \"www.angular.easytravel.com\" AND userId IS NOT NULL AND userId IS NOT \"Demo User\" AND userId IS NOT \"Maria O'Donnel\" AND userId IS NOT \"Synthetic Browser\" GROUP BY userId, stringProperties.loyalty_status, longProperties.income ORDER BY longProperties.income DESC",
+      "type": "TABLE",
+      "limit": 50
+    },
+    {
+      "name": "User Sessions Query",
+      "tileType": "DTAQL",
+      "configured": true,
+      "bounds": {
+        "top": 1178,
+        "left": 1938,
+        "width": 608,
+        "height": 228
+      },
+      "tileFilter": {
+        "timeframe": "Last 2 hours"
+      },
+      "isAutoRefreshDisabled": false,
+      "customName": "User registrations - Conversion Funnel",
+      "query": "SELECT FUNNEL(useraction.name=\"AppStart (easyTravel)\" AS \"Started\", useraction.name = \"bookJourney\" AS \"Submitted\") FROM usersession",
+      "type": "FUNNEL",
+      "timeFrameShift": "-1w",
+      "limit": 50
+    }
+  ]
+}

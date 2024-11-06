@@ -1,0 +1,2584 @@
+{
+    "version": 15,
+    "variables": [],
+    "tiles": {
+        "1": {
+            "type": "markdown",
+            "title": "",
+            "content": "# VMware Overview\n***"
+        },
+        "3": {
+            "type": "markdown",
+            "title": "",
+            "content": "## Currently monitoring\n"
+        },
+        "4": {
+            "type": "data",
+            "title": "vCenters",
+            "query": "timeseries host_info = avg(vmware.info.host_info), by: { `dt.entity.vmware:vcenter` }\n| summarize host_info = countDistinct(`dt.entity.vmware:vcenter`)",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "singleValue",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "host_info.single_value",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540"
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f"
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a"
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "hiddenLegendFields": [],
+                    "categoricalBarChartSettings": {}
+                },
+                "singleValue": {
+                    "showLabel": false,
+                    "recordField": "host_info",
+                    "autoscale": true,
+                    "sparklineSettings": {
+                        "showTicks": true,
+                        "variant": "area",
+                        "record": "host_info",
+                        "visible": false,
+                        "isVisible": false
+                    },
+                    "trend": {
+                        "relative": true,
+                        "visible": false,
+                        "isVisible": false
+                    },
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "host_info"
+                    },
+                    "displayedFields": [
+                        null
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "host_info.single_value",
+                        "unitCategory": "unspecified",
+                        "baseUnit": "count",
+                        "displayUnit": "",
+                        "decimals": 0,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "host_info.single_value"
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "host_info",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "5": {
+            "type": "data",
+            "title": "Clusters",
+            "query": "timeseries host_info = avg(vmware.info.host_info), by: { `dt.entity.vmware:vcenter`,`dt.entity.vmware:datacenter`,`dt.entity.vmware:cluster`, cluster.name }\n| filterOut cluster.name == \"No Cluster\"\n| summarize countDistinct(`dt.entity.vmware:cluster`)",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "singleValue",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "host_info.single_value",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540"
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f"
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a"
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "hiddenLegendFields": [],
+                    "categoricalBarChartSettings": {}
+                },
+                "singleValue": {
+                    "showLabel": false,
+                    "recordField": "countDistinct(`dt.entity.vmware:cluster`)",
+                    "autoscale": true,
+                    "sparklineSettings": {
+                        "showTicks": true,
+                        "variant": "area",
+                        "record": "host_info",
+                        "visible": false,
+                        "isVisible": false
+                    },
+                    "trend": {
+                        "relative": true,
+                        "visible": false,
+                        "isVisible": false
+                    },
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "countDistinct(`dt.entity.vmware:cluster`)"
+                    },
+                    "displayedFields": [
+                        null
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "host_info.single_value",
+                        "unitCategory": "unspecified",
+                        "baseUnit": "count",
+                        "displayUnit": "",
+                        "decimals": 0,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "host_info.single_value"
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "countDistinct(`dt.entity.vmware:cluster`)",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "6": {
+            "type": "data",
+            "title": "Data Centers",
+            "query": "timeseries host_info = avg(vmware.info.host_info), by: {`dt.entity.vmware:vcenter`,`dt.entity.vmware:datacenter` }\n| summarize host_info = countDistinct(`dt.entity.vmware:datacenter`)",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "singleValue",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "host_info.single_value",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540"
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f"
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a"
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "hiddenLegendFields": [],
+                    "categoricalBarChartSettings": {}
+                },
+                "singleValue": {
+                    "showLabel": false,
+                    "recordField": "host_info",
+                    "autoscale": true,
+                    "sparklineSettings": {
+                        "showTicks": true,
+                        "variant": "area",
+                        "record": "host_info",
+                        "visible": false,
+                        "isVisible": false
+                    },
+                    "trend": {
+                        "relative": true,
+                        "visible": false,
+                        "isVisible": false
+                    },
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "host_info"
+                    },
+                    "displayedFields": [
+                        null
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "host_info.single_value",
+                        "unitCategory": "unspecified",
+                        "baseUnit": "count",
+                        "displayUnit": "",
+                        "decimals": 0,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "host_info.single_value"
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "host_info",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "7": {
+            "type": "data",
+            "title": "Active VMs",
+            "query": "timeseries vm_info = avg(vmware.info.vm_info), by: { `dt.entity.vmware:virtualmachine` }, \nfilter: { (vm.connection.state == \"connected\") AND (vm.power.state == \"poweredOn\") }\n| summarize countDistinct(`dt.entity.vmware:virtualmachine`)",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "singleValue",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "vm_info.single_value",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540"
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f"
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a"
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "hiddenLegendFields": [],
+                    "categoricalBarChartSettings": {}
+                },
+                "singleValue": {
+                    "showLabel": false,
+                    "recordField": "countDistinct(`dt.entity.vmware:virtualmachine`)",
+                    "autoscale": false,
+                    "sparklineSettings": {
+                        "showTicks": true,
+                        "variant": "area",
+                        "record": "vm_info",
+                        "visible": false,
+                        "isVisible": false
+                    },
+                    "trend": {
+                        "relative": true,
+                        "visible": false,
+                        "isVisible": false
+                    },
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "countDistinct(`dt.entity.vmware:virtualmachine`)"
+                    },
+                    "displayedFields": [
+                        null
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "countDistinct(`dt.entity.vmware:virtualmachine`)",
+                        "unitCategory": "unspecified",
+                        "baseUnit": "none",
+                        "displayUnit": null,
+                        "decimals": 0,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "vm_info.single_value"
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "countDistinct(`dt.entity.vmware:virtualmachine`)",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "8": {
+            "type": "data",
+            "title": "Hosts in a Cluster",
+            "query": "timeseries host_info = avg(vmware.info.host_info), by: { `dt.entity.vmware:host`, cluster.name }\n| filterOut cluster.name == \"No Cluster\"\n| summarize countDistinct(`dt.entity.vmware:host`)",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "singleValue",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "host_info.single_value",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540"
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f"
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a"
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "hiddenLegendFields": [],
+                    "categoricalBarChartSettings": {}
+                },
+                "singleValue": {
+                    "showLabel": false,
+                    "recordField": "countDistinct(`dt.entity.vmware:host`)",
+                    "autoscale": true,
+                    "sparklineSettings": {
+                        "showTicks": true,
+                        "variant": "area",
+                        "record": "host_info",
+                        "visible": false,
+                        "isVisible": false
+                    },
+                    "trend": {
+                        "relative": true,
+                        "visible": false,
+                        "isVisible": false
+                    },
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "countDistinct(`dt.entity.vmware:host`)"
+                    },
+                    "displayedFields": [
+                        null
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "host_info.single_value",
+                        "unitCategory": "unspecified",
+                        "baseUnit": "count",
+                        "displayUnit": "",
+                        "decimals": 0,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "host_info.single_value"
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "countDistinct(`dt.entity.vmware:host`)",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "9": {
+            "type": "data",
+            "title": "Standalone Hosts",
+            "query": "timeseries host_info = avg(vmware.info.host_info), by: { `dt.entity.vmware:host`, cluster.name }\n| filterOut cluster.name != \"No Cluster\"\n| summarize countDistinct(`dt.entity.vmware:host`)",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "singleValue",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "host_info.single_value",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540"
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f"
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a"
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "hiddenLegendFields": [],
+                    "categoricalBarChartSettings": {}
+                },
+                "singleValue": {
+                    "showLabel": false,
+                    "recordField": "countDistinct(`dt.entity.vmware:host`)",
+                    "autoscale": true,
+                    "sparklineSettings": {
+                        "showTicks": true,
+                        "variant": "area",
+                        "record": "host_info",
+                        "visible": false,
+                        "isVisible": false
+                    },
+                    "trend": {
+                        "relative": true,
+                        "visible": false,
+                        "isVisible": false
+                    },
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "countDistinct(`dt.entity.vmware:host`)"
+                    },
+                    "displayedFields": [
+                        null
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "host_info.single_value",
+                        "unitCategory": "unspecified",
+                        "baseUnit": "count",
+                        "displayUnit": "",
+                        "decimals": 0,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "host_info.single_value"
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "countDistinct(`dt.entity.vmware:host`)",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "10": {
+            "type": "data",
+            "title": "Disconnected Hosts",
+            "query": "timeseries host_info = avg(vmware.info.host_info), by: { `dt.entity.vmware:host`, host.connected.state }\n| filterOut host.connected.state != \"disconnected\"\n| summarize countDistinct(`dt.entity.vmware:host`)",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "singleValue",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "countDistinct(`dt.entity.vmware:host`)",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540",
+                                "value": 0
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f"
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a",
+                                "value": 1
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "categoricalBarChartSettings": {}
+                },
+                "singleValue": {
+                    "showLabel": false,
+                    "recordField": "countDistinct(`dt.entity.vmware:host`)",
+                    "autoscale": true,
+                    "sparklineSettings": {
+                        "showTicks": true,
+                        "variant": "area",
+                        "record": "host_info",
+                        "visible": false,
+                        "isVisible": false
+                    },
+                    "trend": {
+                        "relative": true,
+                        "visible": false,
+                        "isVisible": false
+                    },
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "countDistinct(`dt.entity.vmware:host`)"
+                    },
+                    "displayedFields": [
+                        null
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "host_info.single_value",
+                        "unitCategory": "unspecified",
+                        "baseUnit": "count",
+                        "displayUnit": "",
+                        "decimals": 0,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "host_info.single_value"
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "countDistinct(`dt.entity.vmware:host`)",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "11": {
+            "type": "data",
+            "title": "Datastores",
+            "query": "timeseries vm_info = avg(vmware.info.datastore_info), by: { `dt.entity.vmware:datastore`}\n| summarize countDistinct(`dt.entity.vmware:datastore`)",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "singleValue",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "datastore_info.single_value",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540"
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f"
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a"
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "hiddenLegendFields": [],
+                    "categoricalBarChartSettings": {}
+                },
+                "singleValue": {
+                    "showLabel": false,
+                    "recordField": "countDistinct(`dt.entity.vmware:datastore`)",
+                    "autoscale": true,
+                    "sparklineSettings": {
+                        "showTicks": true,
+                        "variant": "area",
+                        "record": "datastore_info",
+                        "visible": false,
+                        "isVisible": false
+                    },
+                    "trend": {
+                        "relative": true,
+                        "visible": false,
+                        "isVisible": false
+                    },
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "countDistinct(`dt.entity.vmware:datastore`)"
+                    },
+                    "displayedFields": [
+                        null
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "datastore_info.single_value",
+                        "unitCategory": "unspecified",
+                        "baseUnit": "count",
+                        "displayUnit": "",
+                        "decimals": 0,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "datastore_info.single_value"
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "countDistinct(`dt.entity.vmware:datastore`)",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "13": {
+            "type": "markdown",
+            "title": "",
+            "content": "## VMware Clusters"
+        },
+        "14": {
+            "type": "data",
+            "title": "VMware Cluster",
+            "query": "timeseries by: {`dt.entity.vmware:cluster` }, filter: { cluster.name != \"No Cluster\" },  {\n  cpu_capacity = avg(vmware.cluster.cpu.capacity),\n  cpu_used= avg(vmware.cluster.cpu.used),\n  mem_capacity = avg(vmware.cluster.mem.capacity),\n  mem_used= avg(vmware.cluster.mem.used),\n  storage_capacity = avg(vmware.cluster.storage.capacity),\n  storage_used= avg(vmware.cluster.storage.used)\n}\n| lookup [\n    fetch `dt.entity.vmware:cluster`\n    | fields id, entity.name, cluster = record(entityId=id, displayName=entity.name, dim=\"dt.entity.vmware:cluster\")\n],\n sourceField: `dt.entity.vmware:cluster`,\n lookupField: id,\n fields: cluster\n| fieldsAdd \n  name = entityName(`dt.entity.vmware:cluster`),\n  cpu_cap      = arrayLast(cpu_capacity),\n  cpu_used     = arrayLast(cpu_used),\n  mem_cap      = arrayLast(mem_capacity),\n  mem_used     = arrayLast(mem_used),\n  storage_cap  = arrayLast(storage_capacity),\n  storage_used = arrayLast(storage_used)\n| fields name, cpu_used, cpu_cap, mem_used, mem_cap, storage_used, storage_cap\n| fieldsRename `Cluster`=name, \n               `CPU Used`=cpu_used,\n               `CPU Capacity`=cpu_cap,\n               `Memory Used`=mem_used,\n               `Memory Capacity`=mem_cap,\n               `Storage Used`=storage_used,\n               `Storage Capacity`=storage_cap",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "table",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "average",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540"
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f"
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a"
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "categoricalBarChartSettings": {
+                        "categoryAxisLabel": "Cluster",
+                        "valueAxisLabel": "CPU Used",
+                        "categoryAxis": "Cluster",
+                        "valueAxis": "CPU Used"
+                    },
+                    "hiddenLegendFields": []
+                },
+                "singleValue": {
+                    "showLabel": true,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "dt.entity.vmware:cluster",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "hiddenColumns": [
+                        [
+                            "A:dt.entity.vmware:cluster.name"
+                        ],
+                        [
+                            "B:dt.entity.vmware:cluster.name"
+                        ],
+                        [
+                            "timeframe"
+                        ],
+                        [
+                            "interval"
+                        ]
+                    ],
+                    "colorThresholdTarget": "value",
+                    "columnWidths": {
+                        "[\"Cluster Name\"]": 186.328125,
+                        "[\"Storage Used\"]": 231.1875,
+                        "[\"Memory Capacity\"]": 223.609375,
+                        "[\"Memory Used\"]": 171.265625,
+                        "[\"CPU Capacity\"]": 183.765625,
+                        "[\"CPU Used\"]": 136.421875,
+                        "[\"Cluster\"]": 186.703125
+                    }
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "CPU Used"
+                    },
+                    "displayedFields": [
+                        "Cluster"
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "CPU Used",
+                        "unitCategory": "frequency",
+                        "baseUnit": "megahertz",
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "average",
+                        "displayUnit": null
+                    },
+                    {
+                        "identifier": "CPU Capacity",
+                        "unitCategory": "frequency",
+                        "baseUnit": "megahertz",
+                        "displayUnit": null,
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 1722542519264
+                    },
+                    {
+                        "identifier": "Memory Used",
+                        "unitCategory": "data",
+                        "baseUnit": "mebibyte",
+                        "displayUnit": null,
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 1722542599196
+                    },
+                    {
+                        "identifier": "Memory Capacity",
+                        "unitCategory": "data",
+                        "baseUnit": "mebibyte",
+                        "displayUnit": null,
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 1722542625895
+                    },
+                    {
+                        "identifier": "Storage Capacity",
+                        "unitCategory": "data",
+                        "baseUnit": "mebibyte",
+                        "displayUnit": null,
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 1722542641423
+                    },
+                    {
+                        "identifier": "Storage Used",
+                        "unitCategory": "data",
+                        "baseUnit": "mebibyte",
+                        "displayUnit": null,
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 1722542722559
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "CPU Used",
+                            "rangeAxis": ""
+                        },
+                        {
+                            "valueAxis": "CPU Capacity",
+                            "rangeAxis": ""
+                        },
+                        {
+                            "valueAxis": "Memory Used",
+                            "rangeAxis": ""
+                        },
+                        {
+                            "valueAxis": "Memory Capacity",
+                            "rangeAxis": ""
+                        },
+                        {
+                            "valueAxis": "Storage Used",
+                            "rangeAxis": ""
+                        },
+                        {
+                            "valueAxis": "Storage Capacity",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "15": {
+            "type": "markdown",
+            "title": "",
+            "content": "## VMware Hosts"
+        },
+        "16": {
+            "type": "data",
+            "title": "VMware Host",
+            "query": "timeseries by: {`dt.entity.vmware:host`}, {\n  average_cpu = avg(vmware.host.cpu.usage.average),\n  average_mem = avg(vmware.host.mem.usage.average)\n}\n| fieldsAdd average_cpu = arrayAvg(average_cpu), average_mem = arrayAvg(average_mem), entityName(`dt.entity.vmware:host`), alias: Name\n| sort average_cpu desc\n| fields Name, average_cpu, average_mem\n| fieldsRename `Host Name`=Name, `Average CPU %`=average_cpu, `Average Memory %`=average_mem",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "table",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "Average CPU %",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540",
+                                "value": 0
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f",
+                                "value": 75
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a",
+                                "value": 90
+                            }
+                        ],
+                        "isEnabled": true
+                    },
+                    {
+                        "id": "1",
+                        "title": "",
+                        "field": "Average Memory %",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540",
+                                "value": 0
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f",
+                                "value": 60
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a",
+                                "value": 90
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "categoricalBarChartSettings": {
+                        "categoryAxis": "Host Name",
+                        "categoryAxisLabel": "Host Name",
+                        "valueAxis": "Average CPU %",
+                        "valueAxisLabel": "Average CPU %"
+                    },
+                    "hiddenLegendFields": []
+                },
+                "singleValue": {
+                    "showLabel": true,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "dt.entity.vmware:host",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "hiddenColumns": [
+                        [
+                            "A:dt.entity.vmware:host.name"
+                        ],
+                        [
+                            "B:dt.entity.vmware:host.name"
+                        ],
+                        [
+                            "timeframe"
+                        ],
+                        [
+                            "interval"
+                        ]
+                    ],
+                    "colorThresholdTarget": "background"
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "Average CPU %"
+                    },
+                    "displayedFields": [
+                        "Host Name"
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "average",
+                        "unitCategory": "percentage",
+                        "baseUnit": "percent",
+                        "displayUnit": null,
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "average"
+                    },
+                    {
+                        "identifier": "average",
+                        "unitCategory": "percentage",
+                        "baseUnit": "percent",
+                        "displayUnit": null,
+                        "decimals": 2,
+                        "suffix": "%",
+                        "delimiter": false,
+                        "added": 1,
+                        "id": "average"
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "Average CPU %",
+                            "rangeAxis": ""
+                        },
+                        {
+                            "valueAxis": "Average Memory %",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "17": {
+            "type": "data",
+            "title": "CPU Usage",
+            "query": "timeseries average = avg(vmware.host.cpu.usage.average), by: { `dt.entity.vmware:host` }\n| sort arrayAvg(average) desc\n| fieldsAdd entityName(`dt.entity.vmware:host`)\n| limit 20",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "lineChart",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "average",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540"
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f"
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a"
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "seriesOverrides": [],
+                    "gapPolicy": "gap",
+                    "legend": {
+                        "hidden": true
+                    },
+                    "leftYAxisSettings": {
+                        "label": ""
+                    },
+                    "categoricalBarChartSettings": {
+                        "categoryAxis": "dt.entity.vmware:host.name",
+                        "categoryAxisLabel": "dt.entity.vmware:host.name",
+                        "valueAxis": "interval",
+                        "valueAxisLabel": "interval"
+                    },
+                    "hiddenLegendFields": [
+                        "dt.entity.vmware:host"
+                    ],
+                    "fieldMapping": {
+                        "timestamp": "timeframe",
+                        "leftAxisValues": [
+                            "average"
+                        ],
+                        "leftAxisDimensions": [
+                            "dt.entity.vmware:host",
+                            "dt.entity.vmware:host.name"
+                        ]
+                    }
+                },
+                "singleValue": {
+                    "showLabel": true,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "dt.entity.vmware:host",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "interval"
+                    },
+                    "displayedFields": [
+                        "dt.entity.vmware:host"
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "average",
+                        "unitCategory": "percentage",
+                        "baseUnit": "percent",
+                        "displayUnit": "",
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "average"
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "interval",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "18": {
+            "type": "data",
+            "title": "Memory Usage",
+            "query": "timeseries average = avg(vmware.host.mem.usage.average), by: { `dt.entity.vmware:host` }\n| sort arrayAvg(average) desc\n| fieldsAdd entityName(`dt.entity.vmware:host`)\n| limit 20",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "lineChart",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "average",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540"
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f"
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a"
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "seriesOverrides": [],
+                    "gapPolicy": "gap",
+                    "legend": {
+                        "hidden": true
+                    },
+                    "leftYAxisSettings": {
+                        "label": ""
+                    },
+                    "categoricalBarChartSettings": {
+                        "categoryAxis": "dt.entity.vmware:host.name",
+                        "categoryAxisLabel": "dt.entity.vmware:host.name",
+                        "valueAxis": "interval",
+                        "valueAxisLabel": "interval"
+                    },
+                    "hiddenLegendFields": [
+                        "dt.entity.vmware:host"
+                    ],
+                    "fieldMapping": {
+                        "timestamp": "timeframe",
+                        "leftAxisValues": [
+                            "average"
+                        ],
+                        "leftAxisDimensions": [
+                            "dt.entity.vmware:host",
+                            "dt.entity.vmware:host.name"
+                        ]
+                    }
+                },
+                "singleValue": {
+                    "showLabel": true,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "dt.entity.vmware:host",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "interval"
+                    },
+                    "displayedFields": [
+                        "dt.entity.vmware:host"
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "average",
+                        "unitCategory": "percentage",
+                        "baseUnit": "percent",
+                        "displayUnit": "",
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "average"
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "interval",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "19": {
+            "type": "markdown",
+            "title": "",
+            "content": "## VMware VMs"
+        },
+        "20": {
+            "type": "data",
+            "title": "VMware VM",
+            "query": "timeseries by: {`dt.entity.vmware:virtualmachine`}, {\n  average_cpu = avg(vmware.vm.cpu.usage.average),\n  average_mem = avg(vmware.vm.mem.usage.average)\n}\n| fieldsAdd average_cpu = arrayAvg(average_cpu), average_mem = arrayAvg(average_mem), entityName(`dt.entity.vmware:virtualmachine`), alias: Name\n| sort average_cpu desc\n| fields Name, average_cpu, average_mem\n| fieldsRename `Host Name`=Name, `Average CPU %`=average_cpu, `Average Memory %`=average_mem",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "table",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "Average CPU %",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540",
+                                "value": 0
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f",
+                                "value": 75
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a",
+                                "value": 90
+                            }
+                        ],
+                        "isEnabled": true
+                    },
+                    {
+                        "id": "1",
+                        "title": "",
+                        "field": "Average Memory %",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540",
+                                "value": 0
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f",
+                                "value": 60
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a",
+                                "value": 90
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "categoricalBarChartSettings": {
+                        "categoryAxis": "Host Name",
+                        "categoryAxisLabel": "Host Name",
+                        "valueAxis": "Average CPU %",
+                        "valueAxisLabel": "Average CPU %"
+                    },
+                    "hiddenLegendFields": []
+                },
+                "singleValue": {
+                    "showLabel": true,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "dt.entity.vmware:virtualmachine",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "hiddenColumns": [
+                        [
+                            "A:dt.entity.vmware:virtualmachine.name"
+                        ],
+                        [
+                            "B:dt.entity.vmware:virtualmachine.name"
+                        ],
+                        [
+                            "timeframe"
+                        ],
+                        [
+                            "interval"
+                        ]
+                    ],
+                    "colorThresholdTarget": "background",
+                    "columnWidths": {
+                        "[\"Host Name\"]": 251.15625,
+                        "[\"Average CPU %\"]": 181.578125
+                    }
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "Average CPU %"
+                    },
+                    "displayedFields": [
+                        "Host Name"
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "average",
+                        "unitCategory": "percentage",
+                        "baseUnit": "percent",
+                        "displayUnit": "",
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "average"
+                    },
+                    {
+                        "identifier": "average",
+                        "unitCategory": "percentage",
+                        "baseUnit": "percent",
+                        "displayUnit": "",
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 1,
+                        "id": "average"
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "Average CPU %",
+                            "rangeAxis": ""
+                        },
+                        {
+                            "valueAxis": "Average Memory %",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "21": {
+            "type": "data",
+            "title": "CPU Usage",
+            "query": "timeseries average = avg(vmware.vm.cpu.usage.average), by: { `dt.entity.vmware:virtualmachine` }\n| sort arrayAvg(average) desc\n| fieldsAdd entityName(`dt.entity.vmware:virtualmachine`)\n| limit 20",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "lineChart",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "average",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540"
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f"
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a"
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "seriesOverrides": [],
+                    "gapPolicy": "gap",
+                    "legend": {
+                        "hidden": true
+                    },
+                    "leftYAxisSettings": {
+                        "label": ""
+                    },
+                    "categoricalBarChartSettings": {
+                        "categoryAxis": "dt.entity.vmware:virtualmachine.name",
+                        "categoryAxisLabel": "dt.entity.vmware:virtualmachine.name",
+                        "valueAxis": "interval",
+                        "valueAxisLabel": "interval"
+                    },
+                    "hiddenLegendFields": [
+                        "dt.entity.vmware:virtualmachine"
+                    ],
+                    "fieldMapping": {
+                        "timestamp": "timeframe",
+                        "leftAxisValues": [
+                            "average"
+                        ],
+                        "leftAxisDimensions": [
+                            "dt.entity.vmware:virtualmachine",
+                            "dt.entity.vmware:virtualmachine.name"
+                        ]
+                    }
+                },
+                "singleValue": {
+                    "showLabel": true,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "dt.entity.vmware:virtualmachine",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "interval"
+                    },
+                    "displayedFields": [
+                        "dt.entity.vmware:virtualmachine"
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "average",
+                        "unitCategory": "percentage",
+                        "baseUnit": "percent",
+                        "displayUnit": "",
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "average"
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "interval",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "22": {
+            "type": "data",
+            "title": "Memory Usage",
+            "query": "timeseries average = avg(vmware.vm.mem.usage.average), by: { `dt.entity.vmware:virtualmachine` }\n| sort arrayAvg(average) desc\n| fieldsAdd entityName(`dt.entity.vmware:virtualmachine`)\n| limit 20",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "lineChart",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "average",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540"
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f"
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a"
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "seriesOverrides": [],
+                    "gapPolicy": "gap",
+                    "legend": {
+                        "hidden": true
+                    },
+                    "leftYAxisSettings": {
+                        "label": ""
+                    },
+                    "categoricalBarChartSettings": {
+                        "categoryAxis": "dt.entity.vmware:virtualmachine.name",
+                        "categoryAxisLabel": "dt.entity.vmware:virtualmachine.name",
+                        "valueAxis": "interval",
+                        "valueAxisLabel": "interval"
+                    },
+                    "hiddenLegendFields": [
+                        "dt.entity.vmware:virtualmachine"
+                    ],
+                    "fieldMapping": {
+                        "timestamp": "timeframe",
+                        "leftAxisValues": [
+                            "average"
+                        ],
+                        "leftAxisDimensions": [
+                            "dt.entity.vmware:virtualmachine",
+                            "dt.entity.vmware:virtualmachine.name"
+                        ]
+                    }
+                },
+                "singleValue": {
+                    "showLabel": true,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "dt.entity.vmware:virtualmachine",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "interval"
+                    },
+                    "displayedFields": [
+                        "dt.entity.vmware:virtualmachine"
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "average",
+                        "unitCategory": "percentage",
+                        "baseUnit": "percent",
+                        "displayUnit": "",
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "average"
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "interval",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "23": {
+            "type": "markdown",
+            "title": "",
+            "content": "## VMware Datastores"
+        },
+        "24": {
+            "type": "data",
+            "title": "VMware Datastores",
+            "query": "timeseries { freeSpace = avg(vmware.datastore.freeSpace), capacity = avg(vmware.datastore.capacity) }, by: { `dt.entity.vmware:datastore`}\n| fieldsAdd used = 100 - (100 * (freeSpace[] / capacity[] ))\n| summarize { used = sum(used[] ) }, by: { `dt.entity.vmware:datastore`, interval, timeframe }\n| fieldsAdd used = arrayLast(used)\n| sort used desc\n| join [ timeseries freeSpace = avg(vmware.datastore.freeSpace), by: { `dt.entity.vmware:datastore` }\n       | fieldsAdd freeSpace = arrayLast(freeSpace) ], on: { `dt.entity.vmware:datastore` }, fields: {freeSpace, `dt.entity.vmware:datastore`, interval, timeframe}, kind: outer\n| join [ timeseries capacity = avg(vmware.datastore.capacity), by: { `dt.entity.vmware:datastore` }\n       | fieldsAdd capacity = arrayLast(capacity) ], on: { `dt.entity.vmware:datastore` }, fields: {capacity, `dt.entity.vmware:datastore`, interval, timeframe}, kind: outer\n| fieldsAdd entityName(`dt.entity.vmware:datastore`), alias: Name\n| fields Name, freeSpace, capacity, used\n| fieldsRename `Datastore Name`=Name, `Free Space`=freeSpace, `Capacity`=capacity, `Used %`=used\n| sort `Used %` desc",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "table",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "Used %",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540",
+                                "value": 0
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f",
+                                "value": 70
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a",
+                                "value": 90
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "categoricalBarChartSettings": {
+                        "categoryAxis": "Datastore Name",
+                        "categoryAxisLabel": "Datastore Name",
+                        "valueAxis": "Free Space",
+                        "valueAxisLabel": "Free Space"
+                    },
+                    "hiddenLegendFields": []
+                },
+                "singleValue": {
+                    "showLabel": true,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "used",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "hiddenColumns": [
+                        [
+                            "A:dt.entity.vmware:datastore.name"
+                        ],
+                        [
+                            "B:dt.entity.vmware:datastore.name"
+                        ],
+                        [
+                            "C:dt.entity.vmware:datastore.name"
+                        ],
+                        [
+                            "timeframe"
+                        ],
+                        [
+                            "interval"
+                        ]
+                    ],
+                    "colorThresholdTarget": "background",
+                    "columnWidths": {
+                        "[\"dt.entity.vmware:datastore\"]": 310.78125,
+                        "[\"Capacity\"]": 201.890625,
+                        "[\"Free Space\"]": 157.3125
+                    }
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "Free Space"
+                    },
+                    "displayedFields": [
+                        "Datastore Name"
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "Free Space",
+                        "unitCategory": "data",
+                        "baseUnit": "byte",
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "used",
+                        "displayUnit": null
+                    },
+                    {
+                        "identifier": "Capacity",
+                        "unitCategory": "data",
+                        "baseUnit": "byte",
+                        "displayUnit": null,
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 1722541161317
+                    },
+                    {
+                        "identifier": "Used %",
+                        "unitCategory": "percentage",
+                        "baseUnit": "percent",
+                        "displayUnit": null,
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 1722541171408
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "Free Space",
+                            "rangeAxis": ""
+                        },
+                        {
+                            "valueAxis": "Capacity",
+                            "rangeAxis": ""
+                        },
+                        {
+                            "valueAxis": "Used %",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "25": {
+            "type": "data",
+            "title": "Top Datastore Usage",
+            "query": "timeseries { freeSpace = avg(vmware.datastore.freeSpace), capacity = avg(vmware.datastore.capacity) }, by: { device.address, dt.metrics.source, datastore.id, `dt.entity.vmware:datastore`, `dt.entity.vmware:vcenter`, datastore.name }\n| fieldsAdd used = 100 - (100 * (freeSpace[] / capacity[] ))\n| summarize { used = avg(used[] ) }, by: { `dt.entity.vmware:datastore`, interval, timeframe }\n| sort arrayAvg(used) desc\n| fieldsAdd entityName(`dt.entity.vmware:datastore`)\n| limit 10",
+            "davis": {
+                "enabled": false,
+                "davisVisualization": {
+                    "isAvailable": true
+                }
+            },
+            "visualization": "lineChart",
+            "visualizationSettings": {
+                "thresholds": [
+                    {
+                        "id": "0",
+                        "title": "",
+                        "field": "used",
+                        "rules": [
+                            {
+                                "id": "0",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#7dc540"
+                            },
+                            {
+                                "id": "1",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#f5d30f"
+                            },
+                            {
+                                "id": "2",
+                                "label": "",
+                                "comparator": "≥",
+                                "color": "#dc172a"
+                            }
+                        ],
+                        "isEnabled": true
+                    }
+                ],
+                "chartSettings": {
+                    "seriesOverrides": [],
+                    "gapPolicy": "connect",
+                    "legend": {
+                        "hidden": true
+                    },
+                    "leftYAxisSettings": {
+                        "label": ""
+                    },
+                    "categoricalBarChartSettings": {
+                        "categoryAxis": "dt.entity.vmware:datastore.name",
+                        "categoryAxisLabel": "dt.entity.vmware:datastore.name",
+                        "valueAxis": "interval",
+                        "valueAxisLabel": "interval"
+                    },
+                    "hiddenLegendFields": [
+                        "dt.entity.vmware:datastore"
+                    ],
+                    "fieldMapping": {
+                        "timestamp": "timeframe",
+                        "leftAxisValues": [
+                            "used"
+                        ],
+                        "leftAxisDimensions": [
+                            "dt.entity.vmware:datastore",
+                            "dt.entity.vmware:datastore.name"
+                        ]
+                    }
+                },
+                "singleValue": {
+                    "showLabel": true,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "dt.entity.vmware:datastore",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "blue",
+                    "dataMappings": {
+                        "value": "interval"
+                    },
+                    "displayedFields": [
+                        "dt.entity.vmware:datastore"
+                    ]
+                },
+                "unitsOverrides": [
+                    {
+                        "identifier": "used",
+                        "unitCategory": "percentage",
+                        "baseUnit": "percent",
+                        "displayUnit": "",
+                        "decimals": 2,
+                        "suffix": "",
+                        "delimiter": false,
+                        "added": 0,
+                        "id": "used"
+                    }
+                ],
+                "histogram": {
+                    "dataMappings": [
+                        {
+                            "valueAxis": "interval",
+                            "rangeAxis": ""
+                        }
+                    ]
+                }
+            },
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        },
+        "27": {
+            "type": "data",
+            "title": "vCenter Triggered Alarms & Events",
+            "query": "fetch logs\n| filter(isNotNUll(vcenter.address))\n| fields timestamp, `vcenter.address`, `host.name`, content \n| fieldsRename Time=timestamp, vCenter=vcenter.address, Host=host.name, Message=content \n| sort Time desc",
+            "visualization": "table",
+            "visualizationSettings": {
+                "thresholds": [],
+                "chartSettings": {
+                    "gapPolicy": "connect",
+                    "circleChartSettings": {
+                        "groupingThresholdType": "relative",
+                        "groupingThresholdValue": 0,
+                        "valueType": "relative"
+                    },
+                    "categoryOverrides": {},
+                    "categoricalBarChartSettings": {}
+                },
+                "singleValue": {
+                    "showLabel": true,
+                    "label": "",
+                    "prefixIcon": "",
+                    "recordField": "timestamp",
+                    "autoscale": true,
+                    "alignment": "center",
+                    "colorThresholdTarget": "value"
+                },
+                "table": {
+                    "rowDensity": "condensed",
+                    "enableSparklines": false,
+                    "hiddenColumns": [],
+                    "lineWrapIds": [],
+                    "columnWidths": {}
+                },
+                "honeycomb": {
+                    "shape": "hexagon",
+                    "legend": {
+                        "hidden": false,
+                        "position": "auto"
+                    },
+                    "colorMode": "color-palette",
+                    "colorPalette": "categorical",
+                    "dataMappings": {},
+                    "displayedFields": []
+                },
+                "histogram": {
+                    "dataMappings": []
+                }
+            },
+            "davis": {},
+            "querySettings": {
+                "maxResultRecords": 1000,
+                "defaultScanLimitGbytes": 500,
+                "maxResultMegaBytes": 1,
+                "defaultSamplingRatio": 10,
+                "enableSampling": false
+            }
+        }
+    },
+    "layouts": {
+        "1": {
+            "x": 0,
+            "y": 0,
+            "w": 38,
+            "h": 2
+        },
+        "3": {
+            "x": 0,
+            "y": 2,
+            "w": 38,
+            "h": 1
+        },
+        "4": {
+            "x": 0,
+            "y": 3,
+            "w": 8,
+            "h": 4
+        },
+        "5": {
+            "x": 18,
+            "y": 3,
+            "w": 10,
+            "h": 4
+        },
+        "6": {
+            "x": 8,
+            "y": 3,
+            "w": 10,
+            "h": 4
+        },
+        "7": {
+            "x": 28,
+            "y": 3,
+            "w": 10,
+            "h": 4
+        },
+        "8": {
+            "x": 8,
+            "y": 7,
+            "w": 10,
+            "h": 4
+        },
+        "9": {
+            "x": 18,
+            "y": 7,
+            "w": 10,
+            "h": 4
+        },
+        "10": {
+            "x": 0,
+            "y": 7,
+            "w": 8,
+            "h": 4
+        },
+        "11": {
+            "x": 28,
+            "y": 7,
+            "w": 10,
+            "h": 4
+        },
+        "13": {
+            "x": 0,
+            "y": 17,
+            "w": 37,
+            "h": 1
+        },
+        "14": {
+            "x": 0,
+            "y": 18,
+            "w": 38,
+            "h": 5
+        },
+        "15": {
+            "x": 0,
+            "y": 23,
+            "w": 38,
+            "h": 1
+        },
+        "16": {
+            "x": 0,
+            "y": 24,
+            "w": 16,
+            "h": 7
+        },
+        "17": {
+            "x": 16,
+            "y": 24,
+            "w": 11,
+            "h": 7
+        },
+        "18": {
+            "x": 27,
+            "y": 24,
+            "w": 11,
+            "h": 7
+        },
+        "19": {
+            "x": 0,
+            "y": 31,
+            "w": 38,
+            "h": 1
+        },
+        "20": {
+            "x": 0,
+            "y": 32,
+            "w": 16,
+            "h": 7
+        },
+        "21": {
+            "x": 16,
+            "y": 32,
+            "w": 11,
+            "h": 7
+        },
+        "22": {
+            "x": 27,
+            "y": 32,
+            "w": 11,
+            "h": 7
+        },
+        "23": {
+            "x": 0,
+            "y": 39,
+            "w": 38,
+            "h": 1
+        },
+        "24": {
+            "x": 0,
+            "y": 40,
+            "w": 20,
+            "h": 7
+        },
+        "25": {
+            "x": 20,
+            "y": 40,
+            "w": 18,
+            "h": 7
+        },
+        "27": {
+            "x": 0,
+            "y": 11,
+            "w": 38,
+            "h": 6
+        }
+    },
+    "importedWithCode": false,
+    "gridColumnsCount": 40
+}
