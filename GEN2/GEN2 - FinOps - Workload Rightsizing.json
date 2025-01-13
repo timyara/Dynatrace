@@ -1,0 +1,650 @@
+{
+  "metadata": {
+    "configurationVersions": [
+      7
+    ],
+    "clusterVersion": "1.305.88.20250104-012102"
+  },
+  "id": "a60a5c55-09b4-43b6-aeba-810dc8a05e7c",
+  "dashboardMetadata": {
+    "name": "FinOps - Workload Rightsizing",
+    "shared": true,
+    "owner": "mark.bley@dynatrace.com",
+    "dashboardFilter": {
+      "timeframe": "-24h to now"
+    },
+    "preset": true,
+    "popularity": 1,
+    "dynamicFilters": {
+      "filters": [
+        "RELATED_CLOUD_APPLICATION",
+        "KUBERNETES_CLUSTER",
+        "RELATED_NAMESPACE"
+      ],
+      "genericTagFilters": []
+    },
+    "hasConsistentColors": false
+  },
+  "tiles": [
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 0,
+        "width": 1672,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "---"
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 1672,
+        "width": 152,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "⬅️ [Return](#dashboard;id=b4a2f2f0-4a47-4059-89db-c6d36dc023ee)"
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 1672,
+        "width": 380,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "## Tips\n- Use the Management Zone filter, to retrieve the worker nodes related to a specific application.\n- Use the dynamic filter, below the title, to select a Kubernetes cluster, namespace, or workload.\n\n### Understanding the table\n- Each row represents a Kubernetes workload and the numbers are different metrics related to it. \n- You should pay attention when both coloured cells are red."
+    },
+    {
+      "name": "Image",
+      "tileType": "IMAGE",
+      "configured": true,
+      "bounds": {
+        "top": 342,
+        "left": 1672,
+        "width": 380,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "image": "data:image/webp;base64,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"
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 494,
+        "left": 1672,
+        "width": 380,
+        "height": 570
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "\n# Resources waste 💵🔴\nWe're looking for two conditions:\n1. **Memory usage, % of limit** > 70%\n2. **CPU usage, % of limit** < 70%\n\nCondition 1 tells us that the pod has been assigned a limit (check memory limit, bytes) higher than the utilization.\nCondition 2 tells us the CPU usage utilization compared the assigned limit.\n\n\nFor example, a node with 17.29%\nof **memory usage, % of the limit**, and a memory limit assigned of 5GB, means that we can re-adjust the limit to 1.33GB for the pod to perform at 70% of memory utilization. Last column is the recommended memory limit to assign to the pod based on the real utilization to the application\n\nThank you OneAgent! \n\n### Next action? \n\nChange your yaml files to improve the utilization of resources of your cloud providers and see those changes in real time \n\n💵⚡"
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 1064,
+        "left": 1672,
+        "width": 380,
+        "height": 1102
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "# Column Values Explained \n\n\n### Memory Requests\nThe sum of the memory requests of the pods of the workload, as defined in the specifications.\n\n### Memory Limits\nThe sum of the memory requests of the pods of the workload, as defined in the specifications.\n\n### Memory Usage vs. Limits\nThe memory all processes inside the workloads are using divided by the memory limit defined for the workload, in percentage.\n\n### CPU Requests\nThe sum of the CPU requests of the pods of the workload, as defined in the specifications.\n\n### CPU Limits\nThe sum of the CPU limits of the pods of the workload, as defined in the specifications.\n\n### CPU Usage vs. Limits\nThe CPU all processes inside the workloads are using divided by the CPU limit defined for the workload, in percentage.\n\n### Recommended Memory Limit\nThe memory limit that has to be set so that the memory usage is 70% of the memory limit.\n\n### Recommended CPU Limit\nThe CPU limit that has to be set so that the CPU usage is 70% of the CPU limit.\n\n#### Ref. [Resource Management for Pods and Containers - Kubernetes official documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) "
+    },
+    {
+      "name": "CPU Usage vs. CPU Limits",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 836,
+        "width": 836,
+        "height": 380
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.cloud_application"
+          ],
+          "metricSelector": "(\n  builtin:containers.cpu.usageMilliCores:avg:parents:parents:splitBy(\"dt.entity.cloud_application\"):sum\n  / builtin:kubernetes.workload.limits_cpu:avg:splitBy(\"dt.entity.cloud_application\"):sum\n  * 100\n)\n:sort(value(auto,descending)):limit(40):setUnit(Percent):limit(100)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "CPU Usage vs. Limits"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "0",
+              "max": "100",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 90,
+                "color": "#dc172a"
+              },
+              {
+                "value": 80,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0,
+                "color": "#5ead35"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=null&((builtin:containers.cpu.usageMilliCores:avg:parents:parents:splitBy(\"dt.entity.cloud_application\"):sum/builtin:kubernetes.workload.limits_cpu:avg:splitBy(\"dt.entity.cloud_application\"):sum*100):sort(value(auto,descending)):limit(40):setUnit(Percent):limit(100)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Memory Usage vs. Memory Limits",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 38,
+        "left": 0,
+        "width": 836,
+        "height": 380
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.cloud_application"
+          ],
+          "metricSelector": "(\n  builtin:containers.memory.residentSetBytes:avg:parents:parents:splitBy(\"dt.entity.cloud_application\"):sum\n  / builtin:kubernetes.workload.limits_memory:avg:splitBy(\"dt.entity.cloud_application\"):sum\n  * 100\n)\n:sort(value(auto,descending)):setUnit(Percent):limit(40)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "GRAPH_CHART",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Memory Usave vs. Memory Limits"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "displayName": "",
+            "visible": true
+          },
+          "yAxes": [
+            {
+              "displayName": "",
+              "visible": true,
+              "min": "0",
+              "max": "100",
+              "position": "LEFT",
+              "queryIds": [
+                "A"
+              ],
+              "defaultAxis": true
+            }
+          ]
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 90,
+                "color": "#dc172a"
+              },
+              {
+                "value": 80,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0,
+                "color": "#5ead35"
+              }
+            ],
+            "queryId": "",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": false,
+          "hiddenColumns": []
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=null&((builtin:containers.memory.residentSetBytes:avg:parents:parents:splitBy(\"dt.entity.cloud_application\"):sum/builtin:kubernetes.workload.limits_memory:avg:splitBy(\"dt.entity.cloud_application\"):sum*100):sort(value(auto,descending)):setUnit(Percent):limit(40)):limit(100):names"
+      ]
+    },
+    {
+      "name": "Workload Utilization",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 418,
+        "left": 0,
+        "width": 1672,
+        "height": 4598
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.cloud_application"
+          ],
+          "metricSelector": "builtin:kubernetes.workload.requests_memory:splitBy(\"dt.entity.cloud_application\"):sort(value(auto,descending)):limit(100)",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.cloud_application"
+          ],
+          "metricSelector": "builtin:kubernetes.workload.limits_memory:splitBy(\"dt.entity.cloud_application\"):sort(value(auto,descending)):limit(100)",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "I",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.cloud_application"
+          ],
+          "metricSelector": "builtin:containers.memory.residentSetBytes:avg:parents:parents:splitBy(\"dt.entity.cloud_application\"):sum:sort(value(auto,descending)):limit(100):fold(avg)",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "L",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.cloud_application"
+          ],
+          "metricSelector": "(builtin:containers.memory.residentSetBytes:avg:parents:parents:splitBy(\"dt.entity.cloud_application\"):sort(value(auto,descending)):limit(20) / builtin:kubernetes.workload.limits_memory:splitBy(\"dt.entity.cloud_application\"):sort(value(auto,descending)):limit(20)):setUnit(Percent)",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "D",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.cloud_application"
+          ],
+          "metricSelector": "builtin:kubernetes.workload.requests_cpu:splitBy(\"dt.entity.cloud_application\"):sort(value(auto,descending)):limit(100)",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "J",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.cloud_application"
+          ],
+          "metricSelector": "builtin:containers.cpu.usageMilliCores:avg:parents:parents:splitBy(\"dt.entity.cloud_application\"):sum:sort(value(auto,descending)):limit(100)",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "E",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.cloud_application"
+          ],
+          "metricSelector": "builtin:kubernetes.workload.limits_cpu:splitBy(\"dt.entity.cloud_application\"):sort(value(auto,descending)):limit(100)",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "M",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.cloud_application"
+          ],
+          "metricSelector": "(\n  builtin:containers.cpu.usageMilliCores:avg:parents:parents:splitBy(\"dt.entity.cloud_application\"):sum:sort(value(auto,descending)):limit(100)\n  / builtin:kubernetes.workload.requests_cpu:avg:splitBy(\"dt.entity.cloud_application\"):sum\n  * 100\n)\n:setUnit(Percent):limit(100)",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "N",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.cloud_application"
+          ],
+          "metricSelector": "(builtin:kubernetes.workload.limits_memory:splitBy(\"dt.entity.cloud_application\"):sort(value(auto,descending)):limit(100):fold * 0.7):setUnit(Bytes)",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "O",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.cloud_application"
+          ],
+          "metricSelector": "(builtin:kubernetes.workload.limits_cpu:splitBy(\"dt.entity.cloud_application\"):sort(value(auto,descending)):limit(100):fold * 0.7):setUnit(MilliCores)",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TABLE",
+        "global": {
+          "hideLegend": false
+        },
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Mem Req"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "B:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Mem Limits"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "I:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Mem Used"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "L:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Mem Usage vs Limits"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "D:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "CPU Req"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "J:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "CPU Used"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "E:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "CPU Limits"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "M:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "CPU Usage vs Req"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "N:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Recommended Memory Limit"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "O:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Recommended CPU Limit"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 70,
+                "color": "#ffe11c"
+              },
+              {
+                "value": 90,
+                "color": "#7dc540"
+              },
+              {
+                "value": 0,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "L",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "rules": [
+              {
+                "value": 70,
+                "color": "#7dc540"
+              },
+              {
+                "value": 90,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "M",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": true,
+          "hiddenColumns": [
+            "A:dt.entity.cloud_application.name",
+            "I:dt.entity.cloud_application.name",
+            "N:dt.entity.cloud_application.name",
+            "B:dt.entity.cloud_application.name",
+            "L:dt.entity.cloud_application.name",
+            "D:dt.entity.cloud_application.name",
+            "J:dt.entity.cloud_application.name",
+            "E:dt.entity.cloud_application.name",
+            "O:dt.entity.cloud_application.name",
+            "M:dt.entity.cloud_application.name"
+          ]
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:kubernetes.workload.requests_memory:splitBy(\"dt.entity.cloud_application\"):sort(value(auto,descending)):limit(100)):names:fold(auto),(builtin:kubernetes.workload.limits_memory:splitBy(\"dt.entity.cloud_application\"):sort(value(auto,descending)):limit(100)):names:fold(auto),(builtin:containers.memory.residentSetBytes:avg:parents:parents:splitBy(\"dt.entity.cloud_application\"):sum:sort(value(auto,descending)):limit(100):fold(avg)):names:fold(auto),((builtin:containers.memory.residentSetBytes:avg:parents:parents:splitBy(\"dt.entity.cloud_application\"):sort(value(auto,descending)):limit(20)/builtin:kubernetes.workload.limits_memory:splitBy(\"dt.entity.cloud_application\"):sort(value(auto,descending)):limit(20)):setUnit(Percent)):names:fold(auto),(builtin:kubernetes.workload.requests_cpu:splitBy(\"dt.entity.cloud_application\"):sort(value(auto,descending)):limit(100)):names:fold(auto),(builtin:containers.cpu.usageMilliCores:avg:parents:parents:splitBy(\"dt.entity.cloud_application\"):sum:sort(value(auto,descending)):limit(100)):names:fold(auto),(builtin:kubernetes.workload.limits_cpu:splitBy(\"dt.entity.cloud_application\"):sort(value(auto,descending)):limit(100)):names:fold(auto),((builtin:containers.cpu.usageMilliCores:avg:parents:parents:splitBy(\"dt.entity.cloud_application\"):sum:sort(value(auto,descending)):limit(100)/builtin:kubernetes.workload.requests_cpu:avg:splitBy(\"dt.entity.cloud_application\"):sum*100):setUnit(Percent):limit(100)):names:fold(auto),((builtin:kubernetes.workload.limits_memory:splitBy(\"dt.entity.cloud_application\"):sort(value(auto,descending)):limit(100):fold*0.7):setUnit(Bytes)):names:fold(auto),((builtin:kubernetes.workload.limits_cpu:splitBy(\"dt.entity.cloud_application\"):sort(value(auto,descending)):limit(100):fold*0.7):setUnit(MilliCores)):names:fold(auto)"
+      ]
+    }
+  ]
+}
