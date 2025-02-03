@@ -1,0 +1,1841 @@
+{
+  "metadata": {
+    "configurationVersions": [
+      7
+    ],
+    "clusterVersion": "1.306.65.20250123-155932"
+  },
+  "id": "38f88537-4661-4a87-8006-3d3840f9e2c4",
+  "dashboardMetadata": {
+    "name": "Environment Health Overview (Entities)",
+    "shared": true,
+    "owner": "lawrence.cuneaz@dynatrace.com",
+    "dashboardFilter": {
+      "timeframe": "-24h to now",
+      "managementZone": {
+        "id": "all",
+        "name": "All"
+      }
+    },
+    "preset": true,
+    "popularity": 1,
+    "hasConsistentColors": false
+  },
+  "tiles": [
+    {
+      "name": "Live user activity",
+      "nameSize": "",
+      "tileType": "UEM_ACTIVE_SESSIONS",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 608,
+        "width": 304,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "Synthetic Health (Last Reported Value)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 0,
+        "width": 608,
+        "height": 304
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:synthetic.http.availability.location.total",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.http_check"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "metric": "builtin:synthetic.http.duration.geo",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.http_check"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "C",
+          "metric": "builtin:synthetic.http.responseSize.geo",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.http_check"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TABLE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Availability"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "B:",
+            "unitTransform": "auto",
+            "valueFormat": "0,0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Duration"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "C:",
+            "unitTransform": "KiloByte",
+            "valueFormat": "0,0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Response Size"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE",
+          "showLabels": false
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Availability rate (by location) [HTTP monitor]",
+            "rules": [
+              {
+                "value": 95,
+                "color": "#7dc540"
+              },
+              {
+                "value": 90,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "A",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Duration (by location) [HTTP monitor]",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 500,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 1000,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "B",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Response size (by location) [HTTP monitor]",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 100,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 200,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "C",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": true,
+          "hiddenColumns": [
+            "A:dt.entity.http_check.name",
+            "B:dt.entity.http_check.name",
+            "C:dt.entity.http_check.name"
+          ]
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "LAST_VALUE"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:synthetic.http.availability.location.total:splitBy(\"dt.entity.http_check\"):median:sort(value(median,descending)):limit(20)):names:last,(builtin:synthetic.http.duration.geo:splitBy(\"dt.entity.http_check\"):median:sort(value(median,descending)):limit(20)):names:last,(builtin:synthetic.http.responseSize.geo:splitBy(\"dt.entity.http_check\"):median:sort(value(median,descending)):limit(20)):names:last"
+      ]
+    },
+    {
+      "name": "Host Health (Last Reported Value)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 950,
+        "width": 798,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "C",
+          "metric": "builtin:host.availability",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.host"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "D",
+          "metric": "builtin:host.disk.usedPct",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.host"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "metric": "builtin:host.mem.usage",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.host"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "A",
+          "metric": "builtin:host.cpu.usage",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.host"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "E",
+          "metric": "builtin:host.net.nic.retransmission",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.host"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TABLE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "C:",
+            "unitTransform": "auto",
+            "valueFormat": "0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Availability"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "D:",
+            "unitTransform": "auto",
+            "valueFormat": "0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Disk"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "B:",
+            "unitTransform": "auto",
+            "valueFormat": "0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Memory"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "CPU"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "E:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Retransmissions"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE"
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Host availability %",
+            "rules": [
+              {
+                "value": 95,
+                "color": "#7dc540"
+              },
+              {
+                "value": 90,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "C",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Disk used %",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 80,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 90,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "D",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Memory used %",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 80,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 90,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "B",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "CPU usage %",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 80,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 90,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "A",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "NIC retransmission",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 10,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 20,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "E",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": true,
+          "hiddenColumns": [
+            "A:dt.entity.host.name",
+            "B:dt.entity.host.name",
+            "C:dt.entity.host.name",
+            "D:dt.entity.host.name",
+            "E:dt.entity.host.name",
+            "E:dt.entity.disk.name"
+          ]
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "LAST_VALUE"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:host.availability:splitBy(\"dt.entity.host\"):median:sort(value(median,descending)):limit(20)):names:last,(builtin:host.disk.usedPct:splitBy(\"dt.entity.host\"):median:sort(value(median,descending)):limit(20)):names:last,(builtin:host.mem.usage:splitBy(\"dt.entity.host\"):median:sort(value(median,descending)):limit(20)):names:last,(builtin:host.cpu.usage:splitBy(\"dt.entity.host\"):median:sort(value(median,descending)):limit(20)):names:last,(builtin:host.net.nic.retransmission:splitBy(\"dt.entity.host\"):median:sort(value(median,descending)):limit(20)):names:last"
+      ]
+    },
+    {
+      "name": "IIS Processes Health (Last Reported Value)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 228,
+        "left": 950,
+        "width": 798,
+        "height": 532
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "builtin:pgi.availability",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.process_group_instance"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.process_group_instance",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "IIS",
+                    "evaluator": "IN",
+                    "matchExactly": false
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "D",
+          "metric": "builtin:tech.generic.network.sessions.connectivity",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.process_group_instance"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.process_group_instance",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "IIS",
+                    "evaluator": "IN",
+                    "matchExactly": false
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "metric": "builtin:tech.generic.mem.usage",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.process_group_instance"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.process_group_instance",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "IIS",
+                    "evaluator": "IN",
+                    "matchExactly": false
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "C",
+          "metric": "builtin:tech.generic.cpu.usage",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.process_group_instance"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.process_group_instance",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "IIS",
+                    "evaluator": "IN",
+                    "matchExactly": false
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "E",
+          "metric": "builtin:tech.generic.network.packets.retransmission",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.process_group_instance"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "filterOperator": "AND",
+            "nestedFilters": [
+              {
+                "filter": "dt.entity.process_group_instance",
+                "filterType": "NAME",
+                "filterOperator": "OR",
+                "entityAttribute": "entityName",
+                "nestedFilters": [],
+                "criteria": [
+                  {
+                    "value": "IIS",
+                    "evaluator": "IN",
+                    "matchExactly": false
+                  }
+                ]
+              }
+            ],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TABLE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Availability"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "D:",
+            "unitTransform": "auto",
+            "valueFormat": "0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Connectivity"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "B:",
+            "unitTransform": "auto",
+            "valueFormat": "0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Memory"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "C:",
+            "unitTransform": "auto",
+            "valueFormat": "0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "CPU"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "E:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Retransmissions"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE",
+          "showLabels": false
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Process availability %",
+            "rules": [
+              {
+                "value": 98,
+                "color": "#7dc540"
+              },
+              {
+                "value": 90,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "A",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "TCP connectivity",
+            "rules": [
+              {
+                "value": 98,
+                "color": "#7dc540"
+              },
+              {
+                "value": 90,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "D",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Process memory usage",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 20,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 30,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "B",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Process CPU usage",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 20,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 30,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "C",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Packet retransmissions",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 10,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 20,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "E",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": true,
+          "hiddenColumns": [
+            "A:dt.entity.process_group_instance.name",
+            "B:dt.entity.process_group_instance.name",
+            "C:dt.entity.process_group_instance.name",
+            "D:dt.entity.process_group_instance.name",
+            "E:dt.entity.process_group_instance.name"
+          ]
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "LAST_VALUE"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:pgi.availability:filter(and(or(in(\"dt.entity.process_group_instance\",entitySelector(\"type(process_group_instance),entityName(~\"IIS~\")\"))))):splitBy(\"dt.entity.process_group_instance\"):median:sort(value(median,descending)):limit(20)):names:last,(builtin:tech.generic.network.sessions.connectivity:filter(and(or(in(\"dt.entity.process_group_instance\",entitySelector(\"type(process_group_instance),entityName(~\"IIS~\")\"))))):splitBy(\"dt.entity.process_group_instance\"):median:sort(value(median,descending)):limit(20)):names:last,(builtin:tech.generic.mem.usage:filter(and(or(in(\"dt.entity.process_group_instance\",entitySelector(\"type(process_group_instance),entityName(~\"IIS~\")\"))))):splitBy(\"dt.entity.process_group_instance\"):median:sort(value(median,descending)):limit(20)):names:last,(builtin:tech.generic.cpu.usage:filter(and(or(in(\"dt.entity.process_group_instance\",entitySelector(\"type(process_group_instance),entityName(~\"IIS~\")\"))))):splitBy(\"dt.entity.process_group_instance\"):median:sort(value(median,descending)):limit(20)):names:last,(builtin:tech.generic.network.packets.retransmission:filter(and(or(in(\"dt.entity.process_group_instance\",entitySelector(\"type(process_group_instance),entityName(~\"IIS~\")\"))))):splitBy(\"dt.entity.process_group_instance\"):median:sort(value(median,descending)):limit(20)):names:last"
+      ]
+    },
+    {
+      "name": "Application Health (Last Reported Value)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 304,
+        "left": 0,
+        "width": 912,
+        "height": 380
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "F",
+          "metric": "builtin:apps.web.apdex.userType.geoBig",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.application"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "A",
+          "metric": "builtin:apps.web.countOfErrors",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.application"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "metric": "builtin:apps.web.actionDuration.load.browser",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.application"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "D",
+          "metric": "builtin:apps.web.actionCount.load.browser",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.application"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "C",
+          "metric": "builtin:apps.web.actionDuration.xhr.browser",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.application"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "E",
+          "metric": "builtin:apps.web.actionCount.xhr.browser",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.application"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TABLE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "F:",
+            "unitTransform": "auto",
+            "valueFormat": "0,00",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Apdex"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Errors"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "B:",
+            "unitTransform": "Second",
+            "valueFormat": "0,0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Load Action Duration"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "D:",
+            "unitTransform": "auto",
+            "valueFormat": "0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Load Action Count"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "C:",
+            "unitTransform": "Second",
+            "valueFormat": "0,0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "XHR Action Duration"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "E:",
+            "unitTransform": "auto",
+            "valueFormat": "0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "XHR Action Count"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE",
+          "showLabels": false
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Apdex (by geolocation, user type) [web]",
+            "rules": [
+              {
+                "value": 0.85,
+                "color": "#7dc540"
+              },
+              {
+                "value": 0.7,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0.5,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "F",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Error count (by user type, error type, error origin) [web]",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 100,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 1000,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "A",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Action duration - load action (by browser) [web]",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 3,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 9,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "B",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Action count - load action (by browser) [web]",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 1000,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 2000,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "D",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Action duration - XHR action (by browser) [web]",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 3,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 10,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "C",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Action count - XHR action (by browser) [web]",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 1000,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 2000,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "E",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": true,
+          "hiddenColumns": [
+            "A:dt.entity.application.name",
+            "B:dt.entity.application.name",
+            "C:dt.entity.application.name",
+            "D:dt.entity.application.name",
+            "E:dt.entity.application.name",
+            "F:dt.entity.application.name"
+          ]
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "LAST_VALUE"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:apps.web.apdex.userType.geoBig:splitBy(\"dt.entity.application\"):median:sort(value(median,descending)):limit(20)):names:last,(builtin:apps.web.countOfErrors:splitBy(\"dt.entity.application\"):median:sort(value(median,descending)):limit(20)):names:last,(builtin:apps.web.actionDuration.load.browser:splitBy(\"dt.entity.application\"):median:sort(value(median,descending)):limit(20)):names:last,(builtin:apps.web.actionCount.load.browser:splitBy(\"dt.entity.application\"):median:sort(value(median,descending)):limit(20)):names:last,(builtin:apps.web.actionDuration.xhr.browser:splitBy(\"dt.entity.application\"):median:sort(value(median,descending)):limit(20)):names:last,(builtin:apps.web.actionCount.xhr.browser:splitBy(\"dt.entity.application\"):median:sort(value(median,descending)):limit(20)):names:last"
+      ]
+    },
+    {
+      "name": "Database Health (Last Reported Value)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 760,
+        "left": 950,
+        "width": 798,
+        "height": 456
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "B",
+          "metric": "builtin:service.dbconnections.successRate",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.service"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "C",
+          "metric": "builtin:service.dbconnections.total",
+          "spaceAggregation": "MEDIAN",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.service"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TABLE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "B:",
+            "unitTransform": "auto",
+            "valueFormat": "0",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "C:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE",
+          "showLabels": false
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Connection success rate",
+            "rules": [
+              {
+                "value": 90,
+                "color": "#7dc540"
+              },
+              {
+                "value": 80,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 0,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "B",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Total number of connections",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 1000,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 2000,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "C",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": true,
+          "hiddenColumns": [
+            "A:dt.entity.service.name",
+            "B:dt.entity.service.name",
+            "C:dt.entity.service.name",
+            "D:dt.entity.service.name",
+            "E:dt.entity.service.name"
+          ]
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "LAST_VALUE"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:service.dbconnections.successRate:splitBy(\"dt.entity.service\"):median:sort(value(median,descending)):limit(20)):names:last,(builtin:service.dbconnections.total:splitBy(\"dt.entity.service\"):median:sort(value(median,descending)):limit(20)):names:last"
+      ]
+    },
+    {
+      "name": "SNMP Interfaces",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 1748,
+        "width": 798,
+        "height": 684
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "A",
+          "metric": "func:com.dynatrace.extension.snmp-generic-device.if.in.bandwidth",
+          "spaceAggregation": "AVG",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.snmp:com_dynatrace_extension_snmp_generic_device",
+            "dt.entity.snmp:com_dynatrace_extension_snmp_generic_device_interface"
+          ],
+          "sortBy": "DESC",
+          "sortByDimension": "",
+          "filterBy": {
+            "nestedFilters": [],
+            "criteria": []
+          },
+          "limit": 20,
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TABLE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "A:",
+            "properties": {
+              "color": "DEFAULT"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE",
+          "showLabels": false
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Inbound bandwidth utilization",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 5000,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 6000,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "A",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": true,
+          "hiddenColumns": [
+            "A:dt.entity.snmp:com_dynatrace_extension_snmp_generic_device.name",
+            "A:dt.entity.snmp:com_dynatrace_extension_snmp_generic_device_interface.name"
+          ]
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": ""
+      },
+      "metricExpressions": [
+        "resolution=null&(func:com.dynatrace.extension.snmp-generic-device.if.in.bandwidth:splitBy(\"dt.entity.snmp:com_dynatrace_extension_snmp_generic_device\",\"dt.entity.snmp:com_dynatrace_extension_snmp_generic_device_interface\"):avg:sort(value(avg,descending)):limit(20)):names:fold(auto)"
+      ]
+    },
+    {
+      "name": "Service Health (Last Reported Value)",
+      "tileType": "DATA_EXPLORER",
+      "configured": true,
+      "bounds": {
+        "top": 684,
+        "left": 0,
+        "width": 912,
+        "height": 760
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "customName": "Data explorer results",
+      "queries": [
+        {
+          "id": "C",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.service"
+          ],
+          "metricSelector": "builtin:service.requestCount.total:filter(and(or(in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"BACKGROUND_ACTIVITY~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CUSTOM_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CICS_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"QUEUE_LISTENER_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RPC_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"UNIFIED~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RMI_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_REQUEST_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"MESSAGING_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"EXTERNAL~\")\"))))):splitBy(\"dt.entity.service\"):median:sort(value(median,descending))",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "A",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.service"
+          ],
+          "metricSelector": "builtin:service.errors.total.rate:filter(and(or(in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CUSTOM_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"BACKGROUND_ACTIVITY~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CICS_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RPC_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"QUEUE_LISTENER_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"UNIFIED~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RMI_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_REQUEST_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"MESSAGING_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"EXTERNAL~\")\"))))):splitBy(\"dt.entity.service\"):median:sort(value(median,descending))",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.service"
+          ],
+          "metricSelector": "builtin:service.response.time:filter(and(or(in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"BACKGROUND_ACTIVITY~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CUSTOM_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CICS_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RPC_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"QUEUE_LISTENER_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"UNIFIED~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RMI_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_REQUEST_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"MESSAGING_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"EXTERNAL~\")\"))))):splitBy(\"dt.entity.service\"):median:sort(value(median,descending))",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "E",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.service"
+          ],
+          "metricSelector": "builtin:service.nonDbChildCallTime:filter(and(or(in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CUSTOM_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"BACKGROUND_ACTIVITY~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CICS_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RPC_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"QUEUE_LISTENER_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"UNIFIED~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RMI_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_REQUEST_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"MESSAGING_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"EXTERNAL~\")\"))))):splitBy(\"dt.entity.service\"):median:sort(value(median,descending))",
+          "rate": "NONE",
+          "enabled": true
+        },
+        {
+          "id": "D",
+          "spaceAggregation": "AUTO",
+          "timeAggregation": "DEFAULT",
+          "splitBy": [
+            "dt.entity.service"
+          ],
+          "metricSelector": "builtin:service.dbChildCallTime:filter(and(or(in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CUSTOM_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"BACKGROUND_ACTIVITY~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CICS_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RPC_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"QUEUE_LISTENER_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"UNIFIED~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RMI_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_REQUEST_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"MESSAGING_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"EXTERNAL~\")\"))))):splitBy(\"dt.entity.service\"):median:sort(value(median,descending))",
+          "rate": "NONE",
+          "enabled": true
+        }
+      ],
+      "visualConfig": {
+        "type": "TABLE",
+        "global": {},
+        "rules": [
+          {
+            "matcher": "C:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Requests"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "A:",
+            "unitTransform": "auto",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Failures"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "B:",
+            "unitTransform": "Second",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Response time"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "E:",
+            "unitTransform": "Second",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Time in Other Services"
+            },
+            "seriesOverrides": []
+          },
+          {
+            "matcher": "D:",
+            "unitTransform": "Second",
+            "valueFormat": "auto",
+            "properties": {
+              "color": "DEFAULT",
+              "seriesType": "LINE",
+              "alias": "Time in DB Calls"
+            },
+            "seriesOverrides": []
+          }
+        ],
+        "axes": {
+          "xAxis": {
+            "visible": true
+          },
+          "yAxes": []
+        },
+        "heatmapSettings": {
+          "yAxis": "VALUE",
+          "showLabels": false
+        },
+        "singleValueSettings": {
+          "showTrend": true,
+          "showSparkLine": true,
+          "linkTileColorToThreshold": true
+        },
+        "thresholds": [
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Failure rate (any  errors)",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 8,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 20,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "A",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Response time",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 1,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 4,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "B",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Request count",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 500,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 1000,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "C",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Time spent in calls to other services",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 0.5,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 1,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "E",
+            "visible": true
+          },
+          {
+            "axisTarget": "LEFT",
+            "columnId": "Time spent in database calls",
+            "rules": [
+              {
+                "value": 0,
+                "color": "#7dc540"
+              },
+              {
+                "value": 0.5,
+                "color": "#f5d30f"
+              },
+              {
+                "value": 1,
+                "color": "#dc172a"
+              }
+            ],
+            "queryId": "D",
+            "visible": true
+          }
+        ],
+        "tableSettings": {
+          "isThresholdBackgroundAppliedToCell": true,
+          "hiddenColumns": [
+            "A:dt.entity.service.name",
+            "B:dt.entity.service.name",
+            "C:dt.entity.service.name",
+            "D:dt.entity.service.name",
+            "E:dt.entity.service.name"
+          ]
+        },
+        "graphChartSettings": {
+          "connectNulls": false
+        },
+        "honeycombSettings": {
+          "showHive": true,
+          "showLegend": true,
+          "showLabels": false
+        }
+      },
+      "queriesSettings": {
+        "resolution": "",
+        "foldTransformation": "LAST_VALUE"
+      },
+      "metricExpressions": [
+        "resolution=null&(builtin:service.requestCount.total:filter(and(or(in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"BACKGROUND_ACTIVITY~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CUSTOM_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CICS_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"QUEUE_LISTENER_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RPC_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"UNIFIED~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RMI_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_REQUEST_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"MESSAGING_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"EXTERNAL~\")\"))))):splitBy(\"dt.entity.service\"):median:sort(value(median,descending))):names:last,(builtin:service.errors.total.rate:filter(and(or(in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CUSTOM_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"BACKGROUND_ACTIVITY~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CICS_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RPC_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"QUEUE_LISTENER_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"UNIFIED~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RMI_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_REQUEST_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"MESSAGING_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"EXTERNAL~\")\"))))):splitBy(\"dt.entity.service\"):median:sort(value(median,descending))):names:last,(builtin:service.response.time:filter(and(or(in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"BACKGROUND_ACTIVITY~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CUSTOM_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CICS_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RPC_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"QUEUE_LISTENER_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"UNIFIED~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RMI_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_REQUEST_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"MESSAGING_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"EXTERNAL~\")\"))))):splitBy(\"dt.entity.service\"):median:sort(value(median,descending))):names:last,(builtin:service.nonDbChildCallTime:filter(and(or(in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CUSTOM_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"BACKGROUND_ACTIVITY~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CICS_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RPC_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"QUEUE_LISTENER_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"UNIFIED~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RMI_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_REQUEST_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"MESSAGING_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"EXTERNAL~\")\"))))):splitBy(\"dt.entity.service\"):median:sort(value(median,descending))):names:last,(builtin:service.dbChildCallTime:filter(and(or(in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CUSTOM_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"BACKGROUND_ACTIVITY~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"CICS_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RPC_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"QUEUE_LISTENER_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"UNIFIED~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"RMI_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"WEB_REQUEST_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"MESSAGING_SERVICE~\")\")),in(\"dt.entity.service\",entitySelector(\"type(service),serviceType(~\"EXTERNAL~\")\"))))):splitBy(\"dt.entity.service\"):median:sort(value(median,descending))):names:last"
+      ]
+    }
+  ]
+}
