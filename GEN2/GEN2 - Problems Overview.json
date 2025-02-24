@@ -1,0 +1,440 @@
+{
+  "metadata": {
+    "configurationVersions": [
+      7
+    ],
+    "clusterVersion": "1.307.46.20250203-130049"
+  },
+  "id": "9f7127d4-64b3-4ff0-8eb5-ab6c65301ce9",
+  "dashboardMetadata": {
+    "name": "Problems Overview",
+    "shared": true,
+    "owner": "nathan.bullinger@dynatrace.com",
+    "preset": true,
+    "popularity": 1,
+    "hasConsistentColors": false
+  },
+  "tiles": [
+    {
+      "name": "Availability",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 228,
+        "left": 0,
+        "width": 304,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "severityLevel(\"AVAILABILITY\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Error",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 228,
+        "left": 304,
+        "width": 304,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "severityLevel(\"ERROR\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Slowdown",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 228,
+        "left": 608,
+        "width": 304,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "severityLevel(\"PERFORMANCE\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Resource",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 228,
+        "left": 912,
+        "width": 304,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "severityLevel(\"RESOURCE_CONTENTION\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Custom",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 228,
+        "left": 1216,
+        "width": 304,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "severityLevel(\"CUSTOM_ALERT\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Infrastructure",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 532,
+        "left": 0,
+        "width": 342,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "impactLevel(\"INFRASTRUCTURE\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 418,
+        "left": 0,
+        "width": 380,
+        "height": 76
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "# Problems by Impact Level"
+    },
+    {
+      "name": "Services",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 836,
+        "left": 0,
+        "width": 342,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "impactLevel(\"SERVICES\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Application",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 1140,
+        "left": 0,
+        "width": 342,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "impactLevel(\"APPLICATION\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "All Problems",
+      "nameSize": "large",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 76,
+        "left": 0,
+        "width": 1520,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 494,
+        "left": 0,
+        "width": 1520,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "-----------------------"
+    },
+    {
+      "name": "Volume Drop/Spike",
+      "nameSize": "",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 874,
+        "left": 380,
+        "width": 380,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "status(\"OPEN\"),impactLevel(\"SERVICES\"),text(\"Volume\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Availability",
+      "nameSize": "",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 570,
+        "left": 380,
+        "width": 228,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "impactLevel(\"INFRASTRUCTURE\"),text(\"unavailable\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Low Disk Space",
+      "nameSize": "",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 570,
+        "left": 608,
+        "width": 228,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "impactLevel(\"INFRASTRUCTURE\"),text(\"Low disk space\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "CPU Saturation",
+      "nameSize": "",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 570,
+        "left": 836,
+        "width": 228,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "impactLevel(\"INFRASTRUCTURE\"),text(\"CPU\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Memory",
+      "nameSize": "medium",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 570,
+        "left": 1064,
+        "width": 228,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "impactLevel(\"INFRASTRUCTURE\"),text(\"Memory\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Response time Increase",
+      "nameSize": "",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 874,
+        "left": 1140,
+        "width": 380,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "impactLevel(\"SERVICES\"),text(\"Response time degradation\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Failure rate Increase",
+      "nameSize": "",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 874,
+        "left": 760,
+        "width": 380,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "impactLevel(\"SERVICES\"),text(\"Failure rate increase\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 798,
+        "left": 0,
+        "width": 1520,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "-----------------------"
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 1102,
+        "left": 0,
+        "width": 1520,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "-----------------------"
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 0,
+        "left": 0,
+        "width": 380,
+        "height": 76
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "# Problems by Severity"
+    },
+    {
+      "name": "Markdown",
+      "tileType": "MARKDOWN",
+      "configured": true,
+      "bounds": {
+        "top": 1406,
+        "left": 0,
+        "width": 1520,
+        "height": 38
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "markdown": "-----------------------"
+    },
+    {
+      "name": "Environment",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 1444,
+        "left": 0,
+        "width": 342,
+        "height": 228
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "severityLevel(\"CUSTOM_ALERT\"),impactLevel(\"ENVIRONMENT\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Custom Alert",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 1482,
+        "left": 380,
+        "width": 380,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "severityLevel(\"CUSTOM_ALERT\"),impactLevel(\"ENVIRONMENT\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "HTTP Monitor Outage",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 1178,
+        "left": 760,
+        "width": 380,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "impactLevel(\"APPLICATION\"),text(\"Http\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Browser Monitor Outage",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 1178,
+        "left": 1140,
+        "width": 380,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "impactLevel(\"APPLICATION\"),text(\"browser\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Application Errors or Volume Drop",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 1178,
+        "left": 380,
+        "width": 380,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "impactLevel(\"APPLICATION\"),text(\"type(APPLICATION)\")",
+      "useBackgroundColor": true
+    },
+    {
+      "name": "Long GC time",
+      "nameSize": "",
+      "tileType": "OPEN_PROBLEMS",
+      "configured": true,
+      "bounds": {
+        "top": 570,
+        "left": 1292,
+        "width": 228,
+        "height": 152
+      },
+      "tileFilter": {},
+      "isAutoRefreshDisabled": false,
+      "problemSelector": "severityLevel(\"RESOURCE_CONTENTION\"),impactLevel(\"INFRASTRUCTURE\"),text(\"garbage\")",
+      "useBackgroundColor": true
+    }
+  ]
+}
